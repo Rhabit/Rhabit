@@ -489,8 +489,12 @@ a{color:inherit;text-decoration:none}
 .cal-ring circle{fill:none;stroke-width:2.6}
 .cal-ring__bg{stroke:rgba(255,122,26,.16)}
 .cal-ring__fg{stroke:var(--accent-soft);stroke-linecap:round;transition:stroke-dasharray .4s var(--ease)}
-.cal-day.today .cal-day__inner{border-color:var(--accent);background:rgba(255,122,26,.10)}
+/* Día de hoy: círculo relleno concéntrico con el anillo de progreso (sin borde cuadrado que choque) */
+.cal-day.today .cal-day__inner{border-color:transparent;border-radius:50%;background:rgba(255,122,26,.24)}
 .cal-day.today .cal-day__num{color:#fff;font-weight:800}
+/* En el día de hoy, el anillo resalta un poco más sobre el relleno */
+.cal-day.today .cal-ring__bg{stroke:rgba(0,0,0,.28)}
+.cal-day.today .cal-ring__fg{stroke:var(--gold)}
 .cal-day.sel .cal-day__inner{border-color:var(--accent)}
 .cal-day__num{position:relative;z-index:1}
 /* Día con meta/evento: celda tintada, borde y glow del color de la meta */
