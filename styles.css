@@ -802,3 +802,42 @@ a{color:inherit;text-decoration:none}
   .waitlist__btn::after,.btn-lg::after{display:none}
   *{scroll-behavior:auto}
 }
+
+/* ---------- Ajustes para móvil ---------- */
+/* El zoom global solo aplica en pantallas grandes */
+@media(max-width:900px){
+  body{zoom:1}
+}
+@media(max-width:640px){
+  .nav__inner{padding:13px 18px}
+  .nav__brand{font-size:18px}
+  .nav__logo{width:30px;height:30px}
+  .nav__cta{padding:8px 15px}
+
+  .hero{padding:34px 20px 18px}
+  .hero__mascot{width:88px;height:88px;margin-bottom:20px}
+  .hero__sub{margin-top:18px}
+
+  .section{padding:54px 20px}
+  .section::before{left:20px;right:20px}
+  .section__head{margin-bottom:32px}
+
+  .strip{margin:26px auto;gap:9px;padding:0 18px}
+  .strip__item{font-size:13.5px;padding:9px 15px}
+
+  /* Formulario de correo apilado y botón a ancho completo */
+  .waitlist{margin-top:26px}
+  .waitlist__row{flex-direction:column;gap:8px;padding:10px}
+  .waitlist__input{text-align:center;padding:13px 14px}
+  .waitlist__btn{width:100%;padding:14px}
+
+  .feature-row{padding:38px 0}
+  .feature-row__text p{font-size:16px}
+
+  .footer{padding:44px 20px 40px}
+}
+/* Evita cualquier desbordamiento horizontal en pantallas muy estrechas */
+@media(max-width:360px){
+  .phone{width:min(266px,86vw)}
+  .storecard{padding:14px}
+}
