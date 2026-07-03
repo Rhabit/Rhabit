@@ -184,8 +184,9 @@ form.addEventListener("submit", async (e) => {
   const MONTHS = ["Enero","Febrero","Marzo","Abril","Mayo","Junio",
                   "Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
   const WDAYS  = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"];
-  // "Hoy" ficticio fijo para el mockup
-  const TODAY = { y: 2026, m: 6, d: 3 }; // m: 0-indexed (Julio)
+  // "Hoy" real: el mockup se adapta al mes en curso de quien lo visita.
+  const _now = new Date();
+  const TODAY = { y: _now.getFullYear(), m: _now.getMonth(), d: _now.getDate() };
 
   // Patrón de hábitos completados del mes base (día -> % de progreso; 100 = completo)
   const DONE = { 1:100, 2:100, 3:80, 5:100, 6:60, 7:100, 8:100, 9:40, 12:100, 13:100, 15:100, 16:70, 19:100, 22:100, 23:50, 26:100 };
@@ -203,12 +204,15 @@ form.addEventListener("submit", async (e) => {
     /* Sáb */ [ {h:10,m:30,dur:75,t:"Senderismo",s:"Montaña",c:"#ff7a1a",i:"flame"}, {h:17,dur:20,t:"Beber agua",s:"Hidratación",c:"#3fb6ff",i:"droplet"}, {h:19,m:30,dur:40,t:"Leer",s:"Ensayo",c:"#f5b14a",i:"book"} ],
   ];
 
-  // Metas/eventos puntuales (clave y-m-d, m 0-indexado). Los meses que
-  // visita la demo (agosto=7, septiembre=8) tienen su propia meta.
+  // Metas/eventos puntuales (clave y-m-d, m 0-indexado). Se colocan en los
+  // dos meses siguientes al actual, recalculándose según avanza el tiempo.
   const evKey = (y, m, d) => `${y}-${m}-${d}`;
+  const monthAdd = (delta) => { const d = new Date(TODAY.y, TODAY.m + delta, 1); return { y: d.getFullYear(), m: d.getMonth() }; };
+  const EV1 = monthAdd(1); // mes siguiente
+  const EV2 = monthAdd(2); // dos meses después
   const EVENTS = {
-    "2026-7-14": { h: 9,  dur: 60, t: "Meta: 12 entrenos", s: "Objetivo de agosto", c: "#f5b14a", i: "target", goal: true },
-    "2026-8-6":  { h: 10, dur: 90, t: "Reto 10 km",        s: "Carrera popular",     c: "#ff7a1a", i: "flame",  goal: true },
+    [evKey(EV1.y, EV1.m, 14)]: { h: 9,  dur: 60, t: "Meta: 12 entrenos", s: "Objetivo del mes", c: "#f5b14a", i: "target", goal: true },
+    [evKey(EV2.y, EV2.m, 6)]:  { h: 10, dur: 90, t: "Reto 10 km",        s: "Carrera popular",  c: "#ff7a1a", i: "flame",  goal: true },
   };
 
   let view = { y: TODAY.y, m: TODAY.m };
@@ -371,27 +375,27 @@ form.addEventListener("submit", async (e) => {
   function runCalIntro() {
     if (reduce) return;
     clearCalTimers();
-    // Reinicia a julio (hoy) antes de empezar.
+    // Reinicia al mes actual (hoy) antes de empezar.
     view = { y: TODAY.y, m: TODAY.m };
     selected = new Date(TODAY.y, TODAY.m, TODAY.d);
     render();
     renderSchedule(selected);
-    // Agosto: selecciona los días previos (12, 13) y llega a la meta (14).
+    // Mes siguiente: selecciona los días previos (12, 13) y llega a la meta (14).
     T(() => calNext?.click(), 700);
     T(() => tapDay(12), 1500);
     T(() => tapDay(13), 2100);
     T(() => { tapDay(14); schScroll.scrollTop = 0; }, 2800);
-    T(() => seekToHour(EVENTS[evKey(2026, 7, 14)].h), 3400);
-    // Septiembre: días previos (4, 5) y meta (6).
+    T(() => seekToHour(EVENTS[evKey(EV1.y, EV1.m, 14)].h), 3400);
+    // Dos meses después: días previos (4, 5) y meta (6).
     T(() => calNext?.click(), 4700);
     T(() => tapDay(4), 5500);
     T(() => tapDay(5), 6100);
     T(() => { tapDay(6); schScroll.scrollTop = 0; }, 6800);
-    T(() => seekToHour(EVENTS[evKey(2026, 8, 6)].h), 7400);
-    // Vuelve a julio (hoy).
+    T(() => seekToHour(EVENTS[evKey(EV2.y, EV2.m, 6)].h), 7400);
+    // Vuelve al mes actual (hoy).
     T(() => calPrev?.click(), 8700);
     T(() => calPrev?.click(), 9400);
-    T(() => tapDay(3), 10100);
+    T(() => tapDay(TODAY.d), 10100);
   }
   // Se reproduce cada vez que el móvil vuelve a la vista tras salir de ella.
   if (calScreen && "IntersectionObserver" in window) {
