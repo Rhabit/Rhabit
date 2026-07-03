@@ -311,9 +311,16 @@ form.addEventListener("submit", async (e) => {
         cell.className = "cal-day" + (inMonth ? "" : " dim") + (isToday ? " today" : "") +
           (isSel ? " sel" : "") + (ev ? " has-event" : "");
         if (ev) cell.style.setProperty("--ec", ev.c);
-        const ringCls = prog ? " ring" : "";
+        // Anillo de progreso vectorial (SVG) — nítido a cualquier zoom.
+        const ring = prog
+          ? `<svg class="cal-ring" viewBox="0 0 36 36" aria-hidden="true">` +
+              `<circle class="cal-ring__bg" cx="18" cy="18" r="16" pathLength="100"/>` +
+              `<circle class="cal-ring__fg" cx="18" cy="18" r="16" pathLength="100" style="stroke-dasharray:${prog} 100"/>` +
+            `</svg>`
+          : "";
         cell.innerHTML =
-          `<div class="cal-day__inner${ringCls}"${prog ? ` style="--p:${prog}%"` : ""}>` +
+          `<div class="cal-day__inner">` +
+          ring +
           `<span class="cal-day__num">${dNum}</span>` +
           (ev ? `<span class="cal-day__evbadge"><svg class="ico"><use href="#i-${ev.i}"/></svg></span>` : "") +
           `</div>`;

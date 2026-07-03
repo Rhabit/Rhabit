@@ -481,13 +481,14 @@ a{color:inherit;text-decoration:none}
   border:1px solid transparent;transition:border-color .15s,background .15s;
 }
 .cal-day:hover .cal-day__inner{background:rgba(255,255,255,.05)}
-/* anillo de hábitos (progreso) */
-.cal-day__inner.ring::before{
-  content:"";position:absolute;inset:-3px;border-radius:9px;
-  background:conic-gradient(var(--accent-soft) var(--p,100%),rgba(255,122,26,.16) 0);
-  -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 0);
-          mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 0);
+/* anillo de hábitos (progreso) — SVG vectorial, nítido a cualquier zoom */
+.cal-ring{
+  position:absolute;inset:-3px;width:calc(100% + 6px);height:calc(100% + 6px);
+  transform:rotate(-90deg);pointer-events:none;overflow:visible;
 }
+.cal-ring circle{fill:none;stroke-width:2.6}
+.cal-ring__bg{stroke:rgba(255,122,26,.16)}
+.cal-ring__fg{stroke:var(--accent-soft);stroke-linecap:round;transition:stroke-dasharray .4s var(--ease)}
 .cal-day.today .cal-day__inner{border-color:var(--accent);background:rgba(255,122,26,.10)}
 .cal-day.today .cal-day__num{color:#fff;font-weight:800}
 .cal-day.sel .cal-day__inner{border-color:var(--accent)}
