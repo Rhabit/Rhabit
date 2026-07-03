@@ -365,31 +365,43 @@ form.addEventListener("submit", async (e) => {
   function seekToHour(h) {
     schScroll.scrollTo({ top: Math.max(0, h * HOUR_H - HOUR_H), behavior: "smooth" });
   }
-  let calIntroDone = false;
+  let calTimers = [];
+  const clearCalTimers = () => { calTimers.forEach(clearTimeout); calTimers = []; };
+  const T = (fn, ms) => calTimers.push(setTimeout(fn, ms));
   function runCalIntro() {
-    if (calIntroDone || reduce) return;
-    calIntroDone = true;
+    if (reduce) return;
+    clearCalTimers();
+    // Reinicia a julio (hoy) antes de empezar.
+    view = { y: TODAY.y, m: TODAY.m };
+    selected = new Date(TODAY.y, TODAY.m, TODAY.d);
+    render();
+    renderSchedule(selected);
     // Agosto: selecciona los días previos (12, 13) y llega a la meta (14).
-    setTimeout(() => calNext?.click(), 700);
-    setTimeout(() => tapDay(12), 1500);
-    setTimeout(() => tapDay(13), 2100);
-    setTimeout(() => { tapDay(14); schScroll.scrollTop = 0; }, 2800);
-    setTimeout(() => seekToHour(EVENTS[evKey(2026, 7, 14)].h), 3400);
+    T(() => calNext?.click(), 700);
+    T(() => tapDay(12), 1500);
+    T(() => tapDay(13), 2100);
+    T(() => { tapDay(14); schScroll.scrollTop = 0; }, 2800);
+    T(() => seekToHour(EVENTS[evKey(2026, 7, 14)].h), 3400);
     // Septiembre: días previos (4, 5) y meta (6).
-    setTimeout(() => calNext?.click(), 4700);
-    setTimeout(() => tapDay(4), 5500);
-    setTimeout(() => tapDay(5), 6100);
-    setTimeout(() => { tapDay(6); schScroll.scrollTop = 0; }, 6800);
-    setTimeout(() => seekToHour(EVENTS[evKey(2026, 8, 6)].h), 7400);
+    T(() => calNext?.click(), 4700);
+    T(() => tapDay(4), 5500);
+    T(() => tapDay(5), 6100);
+    T(() => { tapDay(6); schScroll.scrollTop = 0; }, 6800);
+    T(() => seekToHour(EVENTS[evKey(2026, 8, 6)].h), 7400);
     // Vuelve a julio (hoy).
-    setTimeout(() => calPrev?.click(), 8700);
-    setTimeout(() => calPrev?.click(), 9400);
-    setTimeout(() => tapDay(3), 10100);
+    T(() => calPrev?.click(), 8700);
+    T(() => calPrev?.click(), 9400);
+    T(() => tapDay(3), 10100);
   }
+  // Se reproduce cada vez que el móvil vuelve a la vista tras salir de ella.
   if (calScreen && "IntersectionObserver" in window) {
+    let armed = true;
     const cio = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { runCalIntro(); cio.disconnect(); } });
-    }, { threshold: 0.5 });
+      entries.forEach(e => {
+        if (!e.isIntersecting) { armed = true; clearCalTimers(); }
+        else if (e.intersectionRatio >= 0.5 && armed) { armed = false; runCalIntro(); }
+      });
+    }, { threshold: [0, 0.5] });
     cio.observe(calScreen);
   }
 })();
@@ -626,13 +638,20 @@ form.addEventListener("submit", async (e) => {
   buildProgress();
   start();
 
-  // Lanza la intro la primera vez que la pantalla entra en viewport.
+  // Reinicia el mazo y relanza la intro cada vez que el móvil vuelve a la vista.
   if (screen && "IntersectionObserver" in window) {
+    let armed = true;
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
-        if (e.isIntersecting && !introDone) { runIntro(); io.disconnect(); }
+        if (!e.isIntersecting) { armed = true; cancelIntro(); }
+        else if (e.intersectionRatio >= 0.55 && armed) {
+          armed = false;
+          introDone = false;
+          start();
+          runIntro();
+        }
       });
-    }, { threshold: 0.55 });
+    }, { threshold: [0, 0.55] });
     io.observe(screen);
   } else {
     setTimeout(runIntro, 900);
@@ -812,26 +831,42 @@ form.addEventListener("submit", async (e) => {
 
   render();
 
+  // Estado inicial de las series (para reiniciar la demo al volver).
+  const initialSets = EXERCISES.map(ex => ex.sets.map(s => ({ ...s })));
+  function resetGym() {
+    EXERCISES.forEach((ex, i) => { ex.sets = initialSets[i].map(s => ({ ...s })); });
+    render();
+    scroll.scrollTop = 0;
+  }
+
   // --- Intro automática (demo tipo anuncio) al entrar en viewport ---
   const gymScreen = document.getElementById("gym-screen");
   const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  let gymIntroDone = false;
+  let gymTimers = [];
+  const clearGymTimers = () => { gymTimers.forEach(clearTimeout); gymTimers = []; };
+  const GT = (fn, ms) => gymTimers.push(setTimeout(fn, ms));
   function tapNextSet() {
     const btn = scroll.querySelector(".gym-setrow:not(.done) .gym-tickbtn");
     if (btn) btn.click();
   }
   function runGymIntro() {
-    if (gymIntroDone || reduce) return;
-    gymIntroDone = true;
-    setTimeout(() => tapNextSet(), 800);
-    setTimeout(() => scroll.scrollTo({ top: 110, behavior: "smooth" }), 1700);
-    setTimeout(() => tapNextSet(), 2500);
-    setTimeout(() => scroll.scrollTo({ top: 0, behavior: "smooth" }), 3300);
+    if (reduce) return;
+    clearGymTimers();
+    resetGym();
+    GT(() => tapNextSet(), 800);
+    GT(() => scroll.scrollTo({ top: 110, behavior: "smooth" }), 1700);
+    GT(() => tapNextSet(), 2500);
+    GT(() => scroll.scrollTo({ top: 0, behavior: "smooth" }), 3300);
   }
+  // Se reproduce cada vez que el móvil vuelve a la vista tras salir de ella.
   if (gymScreen && "IntersectionObserver" in window) {
+    let armed = true;
     const gio = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { runGymIntro(); gio.disconnect(); } });
-    }, { threshold: 0.5 });
+      entries.forEach(e => {
+        if (!e.isIntersecting) { armed = true; clearGymTimers(); }
+        else if (e.intersectionRatio >= 0.5 && armed) { armed = false; runGymIntro(); }
+      });
+    }, { threshold: [0, 0.5] });
     gio.observe(gymScreen);
   }
 })();
