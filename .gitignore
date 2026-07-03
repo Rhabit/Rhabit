@@ -1,0 +1,7 @@
+# NUNCA subir correos reales a la repo pública
+collector/data/emails.txt
+collector/data/
+__pycache__/
+*.pyc
+.venv/
+venv/
