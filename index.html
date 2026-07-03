@@ -1,25 +1,226 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rhabit — Salta hoy. Mañana estarás más cerca</title>
-  <meta name="description" content="Rhabit es la app que convierte tus hábitos, entrenos y estudio en una racha imparable. Apúntate y sé de los primeros en probarla — con regalos exclusivos." />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+  <!-- Seguridad (CSP). Si despliegas el collector en otro dominio, añádelo a connect-src.
+       frame-ancestors solo surte efecto como cabecera HTTP (p. ej. vía Cloudflare); en <meta> se ignora. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'none'; child-src 'none'; frame-src 'none'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests" />
+
+  <!-- Título e indexación -->
+  <title>Rhabit — Hábitos, entrenos y estudio en un calendario | Salta hoy</title>
+  <meta name="description" content="Rhabit reúne tus hábitos, entrenos y estudio en un calendario y los convierte en una racha imparable. Apúntate a la lista de espera y llévate regalos exclusivos al lanzamiento." />
+  <link rel="canonical" href="https://rhabit.app/" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="keywords" content="app de hábitos, seguimiento de hábitos, calendario de hábitos, rachas, entrenos, ejercicios animados, sesiones de estudio, metas, disciplina, Rhabit" />
+  <meta name="author" content="Rhabit" />
+  <meta name="publisher" content="Rhabit" />
+
+  <!-- Idioma -->
+  <link rel="alternate" hreflang="es" href="https://rhabit.app/" />
+  <link rel="alternate" hreflang="x-default" href="https://rhabit.app/" />
+
+  <!-- Apariencia / plataforma -->
   <meta name="theme-color" content="#090906" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="application-name" content="Rhabit" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Rhabit" />
+  <meta name="msapplication-TileColor" content="#090906" />
+  <meta name="msapplication-config" content="none" />
+
+  <!-- Iconos y manifest -->
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32" />
+  <link rel="icon" href="assets/favicon-16.png" type="image/png" sizes="16x16" />
+  <link rel="icon" href="assets/icon-512.png" type="image/png" sizes="512x512" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" sizes="180x180" />
+  <link rel="mask-icon" href="assets/mask-icon.svg" color="#ff7a1a" />
+  <link rel="manifest" href="site.webmanifest" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Rhabit" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:url" content="https://rhabit.app/" />
   <meta property="og:title" content="Rhabit — Salta hoy. Mañana estarás más cerca" />
-  <meta property="og:description" content="Apúntate a la lista de espera y sé de los primeros en probar Rhabit. Los early birds se llevan regalos exclusivos." />
-  <meta property="og:image" content="assets/icon.png" />
+  <meta property="og:description" content="Rhabit reúne tus hábitos, entrenos y estudio en un calendario y los convierte en una racha imparable. Apúntate a la lista de espera — regalos exclusivos para los primeros." />
+  <meta property="og:image" content="https://rhabit.app/assets/og-image.png" />
+  <meta property="og:image:secure_url" content="https://rhabit.app/assets/og-image.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Rhabit — Salta hoy. Mañana estarás más cerca." />
 
-  <link rel="icon" type="image/png" href="assets/icon.png" />
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Rhabit — Salta hoy. Mañana estarás más cerca" />
+  <meta name="twitter:description" content="Hábitos, entrenos y estudio en un calendario que te engancha a tu racha. Apúntate a la lista de espera." />
+  <meta name="twitter:image" content="https://rhabit.app/assets/og-image.png" />
+  <meta name="twitter:image:alt" content="Rhabit — Salta hoy. Mañana estarás más cerca." />
+
+  <!-- Recursos: fuente e imagen LCP -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="image" href="assets/rabbit.png" fetchpriority="high" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- Datos estructurados (Schema.org / JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://rhabit.app/#organization",
+        "name": "Rhabit",
+        "url": "https://rhabit.app/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rhabit.app/assets/icon.png",
+          "width": 1024,
+          "height": 1024
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://rhabit.app/#website",
+        "url": "https://rhabit.app/",
+        "name": "Rhabit",
+        "description": "Hábitos, entrenos y estudio en un calendario que convierte tu constancia en una racha.",
+        "inLanguage": "es",
+        "publisher": { "@id": "https://rhabit.app/#organization" }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://rhabit.app/#webpage",
+        "url": "https://rhabit.app/",
+        "name": "Rhabit — Hábitos, entrenos y estudio en un calendario",
+        "isPartOf": { "@id": "https://rhabit.app/#website" },
+        "about": { "@id": "https://rhabit.app/#app" },
+        "inLanguage": "es",
+        "primaryImageOfPage": "https://rhabit.app/assets/og-image.png"
+      },
+      {
+        "@type": "MobileApplication",
+        "@id": "https://rhabit.app/#app",
+        "name": "Rhabit",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "iOS, Android",
+        "description": "App que reúne hábitos, entrenos y sesiones de estudio en un calendario y los convierte en una racha. Incluye +600 ejercicios animados y +150 hábitos.",
+        "url": "https://rhabit.app/",
+        "image": "https://rhabit.app/assets/og-image.png",
+        "screenshot": "https://rhabit.app/assets/og-image.png",
+        "inLanguage": "es",
+        "softwareVersion": "1.0",
+        "featureList": [
+          "Calendario que une hábitos, entrenos, estudio y metas",
+          "Rachas diarias para mantener la constancia",
+          "+600 ejercicios con animaciones en 3D",
+          "+150 hábitos personalizables",
+          "Registro de series, repeticiones y peso",
+          "Sesiones de estudio y seguimiento de metas",
+          "Estadísticas de un año"
+        ],
+        "publisher": { "@id": "https://rhabit.app/#organization" },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR",
+          "availability": "https://schema.org/PreOrder"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://rhabit.app/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Qué es Rhabit?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Rhabit es un calendario que une tus hábitos, entrenos, estudio y metas, y los convierte en una racha diaria que te ayuda a mantener la constancia."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cuándo estará disponible?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Rhabit llegará próximamente a iOS y Android. Apúntate a la lista de espera para recibir el aviso de lanzamiento y regalos exclusivos."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cuánto cuesta apuntarse a la lista de espera?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Es gratis. Solo dejas tu correo o un canal de contacto y te avisamos el día del lanzamiento; los primeros reciben regalos exclusivos."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://rhabit.app/#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Inicio",
+            "item": "https://rhabit.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Cómo funciona",
+            "item": "https://rhabit.app/#features"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "La app",
+            "item": "https://rhabit.app/#showcase"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "Preguntas frecuentes",
+            "item": "https://rhabit.app/#faq"
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "name": "Apúntate",
+            "item": "https://rhabit.app/#waitlist"
+          }
+        ]
+      },
+      {
+        "@type": "SiteNavigationElement",
+        "@id": "https://rhabit.app/#nav",
+        "name": ["Cómo funciona", "La app", "Preguntas frecuentes", "Apúntate"],
+        "url": [
+          "https://rhabit.app/#features",
+          "https://rhabit.app/#showcase",
+          "https://rhabit.app/#faq",
+          "https://rhabit.app/#waitlist"
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
+
+  <a class="skip-link" href="#top">Saltar al contenido</a>
 
   <!-- Sprite de iconos (line-style, como la app) -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -63,7 +264,7 @@
   <header class="nav">
     <div class="nav__inner">
       <a class="nav__brand" href="#top">
-        <img src="assets/rabbit.png" alt="Rhabit" class="nav__logo" />
+        <img src="assets/rabbit.png" alt="Logo de Rhabit" class="nav__logo" width="40" height="40" decoding="async" />
         <span>Rhabit</span>
       </a>
       <nav class="nav__links">
@@ -74,14 +275,14 @@
     </div>
   </header>
 
-  <main id="top">
+  <main id="top" tabindex="-1">
 
     <!-- HERO -->
     <section class="hero">
       <div class="hero__inner">
-        <img src="assets/rabbit.png" alt="Mascota de Rhabit" class="hero__mascot" />
+        <img src="assets/rabbit.png" alt="Rhabit, la mascota conejo de la app" class="hero__mascot" width="96" height="96" decoding="async" fetchpriority="high" />
 
-        <span class="badge"><svg class="ico"><use href="#i-rocket"/></svg> Próximamente · Lista de espera abierta</span>
+        <span class="badge"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-rocket"/></svg> Próximamente · Lista de espera abierta</span>
 
         <h1 class="hero__title">
           Salta <span class="grad">hoy</span>.<br />
@@ -112,53 +313,53 @@
               </button>
             </div>
             <p class="waitlist__hint" id="form-hint">
-              <svg class="ico"><use href="#i-gift"/></svg> Los que se apunten ahora reciben <strong>regalos exclusivos</strong> el día del lanzamiento.
+              <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-gift"/></svg> Los que se apunten ahora reciben <strong>regalos exclusivos</strong> el día del lanzamiento.
             </p>
           </form>
 
           <div class="altch" id="altch">
             <div class="altch__sep"><span>o avísame por otra vía</span></div>
             <div class="altch__chips" id="altch-chips">
-              <button type="button" class="altch__chip" data-ch="whatsapp"  aria-label="WhatsApp"  style="--bc:#25d366"><svg class="bico"><use href="#b-whatsapp"/></svg></button>
-              <button type="button" class="altch__chip" data-ch="instagram" aria-label="Instagram" style="--bc:#e1306c"><svg class="bico"><use href="#b-instagram"/></svg></button>
-              <button type="button" class="altch__chip" data-ch="facebook"  aria-label="Facebook"  style="--bc:#1877f2"><svg class="bico"><use href="#b-facebook"/></svg></button>
-              <button type="button" class="altch__chip" data-ch="telegram"  aria-label="Telegram"  style="--bc:#2aabee"><svg class="bico"><use href="#b-telegram"/></svg></button>
-              <button type="button" class="altch__chip" data-ch="x"         aria-label="X"          style="--bc:#e7e7e7"><svg class="bico"><use href="#b-x"/></svg></button>
-              <button type="button" class="altch__chip" data-ch="tiktok"    aria-label="TikTok"     style="--bc:#ff0050"><svg class="bico"><use href="#b-tiktok"/></svg></button>
+              <button type="button" class="altch__chip" data-ch="whatsapp"  aria-label="WhatsApp"  style="--bc:#25d366"><svg class="bico" aria-hidden="true" focusable="false"><use href="#b-whatsapp"/></svg></button>
+              <button type="button" class="altch__chip" data-ch="instagram" aria-label="Instagram" style="--bc:#e1306c"><svg class="bico" aria-hidden="true" focusable="false"><use href="#b-instagram"/></svg></button>
+              <button type="button" class="altch__chip" data-ch="facebook"  aria-label="Facebook"  style="--bc:#1877f2"><svg class="bico" aria-hidden="true" focusable="false"><use href="#b-facebook"/></svg></button>
+              <button type="button" class="altch__chip" data-ch="telegram"  aria-label="Telegram"  style="--bc:#2aabee"><svg class="bico" aria-hidden="true" focusable="false"><use href="#b-telegram"/></svg></button>
+              <button type="button" class="altch__chip" data-ch="x"         aria-label="X"          style="--bc:#e7e7e7"><svg class="bico" aria-hidden="true" focusable="false"><use href="#b-x"/></svg></button>
+              <button type="button" class="altch__chip" data-ch="tiktok"    aria-label="TikTok"     style="--bc:#ff0050"><svg class="bico" aria-hidden="true" focusable="false"><use href="#b-tiktok"/></svg></button>
             </div>
             <form class="altch__form" id="altch-form" hidden novalidate>
               <div class="waitlist__row">
-                <span class="altch__badge" id="altch-badge"><svg class="bico"><use href="#b-whatsapp"/></svg></span>
+                <span class="altch__badge" id="altch-badge"><svg class="bico" aria-hidden="true" focusable="false"><use href="#b-whatsapp"/></svg></span>
                 <input type="text" id="altch-input" class="waitlist__input" autocomplete="off" aria-label="Tu usuario o número" />
                 <button type="submit" class="waitlist__btn">Avísame</button>
               </div>
               <p class="waitlist__hint">
-                <svg class="ico"><use href="#i-check"/></svg> Te avisaremos por <strong id="altch-name">WhatsApp</strong> el día del lanzamiento.
+                <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Te avisaremos por <strong id="altch-name">WhatsApp</strong> el día del lanzamiento.
               </p>
             </form>
           </div>
 
-          <div class="waitlist__success" id="waitlist-success" hidden>
-            <div class="waitlist__check"><svg class="ico"><use href="#i-check"/></svg></div>
+          <div class="waitlist__success" id="waitlist-success" role="status" aria-live="polite" hidden>
+            <div class="waitlist__check"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg></div>
             <h3>¡Estás dentro!</h3>
-            <p>Te avisaremos en cuanto Rhabit esté disponible. Prepárate para tus <strong>regalos de bienvenida</strong> <svg class="ico"><use href="#i-gift"/></svg></p>
+            <p>Te avisaremos en cuanto Rhabit esté disponible. Prepárate para tus <strong>regalos de bienvenida</strong> <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-gift"/></svg></p>
           </div>
         </div>
 
         <ul class="hero__trust">
-          <li><svg class="ico"><use href="#i-check"/></svg> Sin spam, solo el aviso de lanzamiento</li>
-          <li><svg class="ico"><use href="#i-check"/></svg> Tu correo se guarda cifrado</li>
-          <li><svg class="ico"><use href="#i-check"/></svg> Regalos garantizados para los primeros</li>
+          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Sin spam, solo el aviso de lanzamiento</li>
+          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Tu correo se guarda cifrado</li>
+          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Regalos garantizados para los primeros</li>
         </ul>
       </div>
     </section>
 
     <!-- BANDA DE VALOR -->
     <section class="strip">
-      <div class="strip__item"><span class="strip__num"><svg class="ico"><use href="#i-signal"/></svg></span><span>Estadísticas de un año</span></div>
-      <div class="strip__item"><span class="strip__num"><svg class="ico"><use href="#i-dumbbell"/></svg></span><span>+600 ejercicios animados</span></div>
-      <div class="strip__item"><span class="strip__num"><svg class="ico"><use href="#i-flame"/></svg></span><span>+150 hábitos</span></div>
-      <div class="strip__item"><span class="strip__num"><svg class="ico"><use href="#i-target"/></svg></span><span>Metas y calendario</span></div>
+      <div class="strip__item"><span class="strip__num"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-signal"/></svg></span><span>Estadísticas de un año</span></div>
+      <div class="strip__item"><span class="strip__num"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-dumbbell"/></svg></span><span>+600 ejercicios animados</span></div>
+      <div class="strip__item"><span class="strip__num"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-flame"/></svg></span><span>+150 hábitos</span></div>
+      <div class="strip__item"><span class="strip__num"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-target"/></svg></span><span>Metas y calendario</span></div>
     </section>
 
     <!-- FEATURES -->
@@ -205,7 +406,7 @@
         </div>
         <div class="phone-stage">
           <div class="phone phone--tilt-r">
-            <video src="assets/ex-curl.mp4" autoplay loop muted playsinline></video>
+            <video src="assets/ex-curl.mp4" width="1396" height="800" autoplay loop muted playsinline preload="metadata" aria-hidden="true" tabindex="-1"></video>
           </div>
         </div>
       </div>
@@ -222,7 +423,7 @@
             <div class="app-screen app-cal" id="cal-screen" aria-hidden="true">
               <div class="app-bar">
                 <span>9:41</span>
-                <span class="app-bar__ico"><svg class="ico"><use href="#i-signal"/></svg><svg class="ico"><use href="#i-battery"/></svg></span>
+                <span class="app-bar__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-signal"/></svg><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-battery"/></svg></span>
               </div>
               <div class="cal-head">
                 <button class="cal-nav" data-cal-prev aria-label="Mes anterior">‹</button>
@@ -260,7 +461,7 @@
             <div class="app-screen app-swipe" id="swipe-screen">
               <div class="app-bar">
                 <span>9:41</span>
-                <span class="app-bar__ico"><svg class="ico"><use href="#i-signal"/></svg><svg class="ico"><use href="#i-battery"/></svg></span>
+                <span class="app-bar__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-signal"/></svg><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-battery"/></svg></span>
               </div>
               <div class="sw-head">
                 <div class="sw-head__text">
@@ -271,9 +472,9 @@
               <div class="sw-prog" id="sw-prog"><!-- segmentos por JS --></div>
               <div class="sw-deck" id="sw-deck"><!-- tarjetas por JS --></div>
               <div class="sw-actions">
-                <button class="sw-btn sw-btn--fail" data-act="fail" aria-label="No hecho"><svg class="ico"><use href="#i-x"/></svg></button>
-                <button class="sw-btn sw-btn--done" data-act="done" aria-label="Hecho"><svg class="ico"><use href="#i-check"/></svg></button>
-                <button class="sw-btn sw-btn--later" data-act="later" aria-label="Más tarde"><svg class="ico"><use href="#i-clock"/></svg></button>
+                <button class="sw-btn sw-btn--fail" data-act="fail" aria-label="No hecho"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-x"/></svg></button>
+                <button class="sw-btn sw-btn--done" data-act="done" aria-label="Hecho"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg></button>
+                <button class="sw-btn sw-btn--later" data-act="later" aria-label="Más tarde"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg></button>
               </div>
             </div>
           </div>
@@ -292,10 +493,10 @@
             <div class="app-screen app-gym" id="gym-screen">
               <div class="app-bar">
                 <span>9:41</span>
-                <span class="app-bar__ico"><svg class="ico"><use href="#i-signal"/></svg><svg class="ico"><use href="#i-battery"/></svg></span>
+                <span class="app-bar__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-signal"/></svg><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-battery"/></svg></span>
               </div>
               <div class="gym-stats">
-                <div class="gym-stat"><svg class="ico"><use href="#i-clock"/></svg><b id="gym-time">12:04</b><span>Tiempo</span></div>
+                <div class="gym-stat"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg><b id="gym-time">12:04</b><span>Tiempo</span></div>
                 <div class="gym-statdiv"></div>
                 <div class="gym-stat"><b id="gym-vol">0</b><span>Volumen</span></div>
                 <div class="gym-statdiv"></div>
@@ -308,8 +509,8 @@
                 <div class="exmodal__backdrop" data-exclose></div>
                 <div class="exmodal__sheet" role="dialog" aria-modal="true" aria-label="Detalle del ejercicio">
                   <div class="exmodal__grab"></div>
-                  <button class="exmodal__close" data-exclose aria-label="Cerrar"><svg class="ico"><use href="#i-x"/></svg></button>
-                  <video class="exmodal__video" id="exmodal-video" loop muted playsinline></video>
+                  <button class="exmodal__close" data-exclose aria-label="Cerrar"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-x"/></svg></button>
+                  <video class="exmodal__video" id="exmodal-video" width="1396" height="800" loop muted playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
                   <div class="exmodal__name" id="exmodal-name"></div>
                   <div class="exmodal__prs" id="exmodal-prs"><!-- generado por JS --></div>
                   <div class="exmodal__setstitle">Series de hoy</div>
@@ -329,40 +530,62 @@
         <h2>Una herramienta, cada rincón de tu día</h2>
       </div>
       <div class="grid">
-        <article class="card"><span class="card__ico"><svg class="ico"><use href="#i-flame"/></svg></span><h3>Rachas</h3><p>El conejo se enciende con tu constancia. No rompas la cadena.</p></article>
-        <article class="card"><span class="card__ico"><svg class="ico"><use href="#i-dumbbell"/></svg></span><h3>Gimnasio</h3><p>Rutinas, series y +600 ejercicios animados en 3D.</p></article>
-        <article class="card"><span class="card__ico"><svg class="ico"><use href="#i-book"/></svg></span><h3>Estudio</h3><p>Sesiones cronometradas y seguimiento de tu foco.</p></article>
-        <article class="card"><span class="card__ico"><svg class="ico"><use href="#i-droplet"/></svg></span><h3>Agua</h3><p>Recuerda hidratarte y mide tu ingesta diaria.</p></article>
-        <article class="card"><span class="card__ico"><svg class="ico"><use href="#i-target"/></svg></span><h3>Metas</h3><p>Objetivos a largo plazo con progreso visible.</p></article>
-        <article class="card"><span class="card__ico"><svg class="ico"><use href="#i-calendar"/></svg></span><h3>Calendario</h3><p>Toda tu semana de hábitos de un vistazo.</p></article>
-        <article class="card"><span class="card__ico"><svg class="ico"><use href="#i-wind"/></svg></span><h3>Calma</h3><p>Respiración guiada y hábitos de bienestar mental.</p></article>
-        <article class="card"><span class="card__ico"><svg class="ico"><use href="#i-moon"/></svg></span><h3>Modo oscuro</h3><p>Diseño elegante pensado para descansar la vista.</p></article>
+        <article class="card"><span class="card__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-flame"/></svg></span><h3>Rachas</h3><p>El conejo se enciende con tu constancia. No rompas la cadena.</p></article>
+        <article class="card"><span class="card__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-dumbbell"/></svg></span><h3>Gimnasio</h3><p>Rutinas, series y +600 ejercicios animados en 3D.</p></article>
+        <article class="card"><span class="card__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-book"/></svg></span><h3>Estudio</h3><p>Sesiones cronometradas y seguimiento de tu foco.</p></article>
+        <article class="card"><span class="card__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-droplet"/></svg></span><h3>Agua</h3><p>Recuerda hidratarte y mide tu ingesta diaria.</p></article>
+        <article class="card"><span class="card__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-target"/></svg></span><h3>Metas</h3><p>Objetivos a largo plazo con progreso visible.</p></article>
+        <article class="card"><span class="card__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-calendar"/></svg></span><h3>Calendario</h3><p>Toda tu semana de hábitos de un vistazo.</p></article>
+        <article class="card"><span class="card__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-wind"/></svg></span><h3>Calma</h3><p>Respiración guiada y hábitos de bienestar mental.</p></article>
+        <article class="card"><span class="card__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-moon"/></svg></span><h3>Modo oscuro</h3><p>Diseño elegante pensado para descansar la vista.</p></article>
       </div>
 
       <!-- Tarjetas de tienda (próximamente, aparecen al hacer scroll) -->
       <div class="storecards">
         <div class="storecard" aria-hidden="true">
-          <img class="storecard__icon" src="assets/rabbit.png" alt="" />
+          <img class="storecard__icon" src="assets/rabbit.png" alt="" width="52" height="52" loading="lazy" decoding="async" />
           <div class="storecard__info">
-            <span class="storecard__soon"><svg class="ico"><use href="#i-lock"/></svg> Próximamente</span>
+            <span class="storecard__soon"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg> Próximamente</span>
             <span class="storecard__name">Rhabit</span>
           </div>
           <div class="storecard__badge">
-            <svg class="bico"><use href="#b-apple"/></svg>
+            <svg class="bico" aria-hidden="true" focusable="false"><use href="#b-apple"/></svg>
             <span><small>Próximamente en</small><b>App Store</b></span>
           </div>
         </div>
         <div class="storecard" aria-hidden="true">
-          <img class="storecard__icon" src="assets/rabbit.png" alt="" />
+          <img class="storecard__icon" src="assets/rabbit.png" alt="" width="52" height="52" loading="lazy" decoding="async" />
           <div class="storecard__info">
-            <span class="storecard__soon"><svg class="ico"><use href="#i-lock"/></svg> Próximamente</span>
+            <span class="storecard__soon"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg> Próximamente</span>
             <span class="storecard__name">Rhabit</span>
           </div>
           <div class="storecard__badge">
-            <svg class="bico"><use href="#b-googleplay"/></svg>
+            <svg class="bico" aria-hidden="true" focusable="false"><use href="#b-googleplay"/></svg>
             <span><small>Próximamente en</small><b>Google Play</b></span>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section faq" id="faq" aria-labelledby="faq-title">
+      <div class="section__head">
+        <span class="eyebrow">Preguntas frecuentes</span>
+        <h2 id="faq-title">Todo lo que quieres saber de Rhabit</h2>
+      </div>
+      <div class="faq__list">
+        <details class="faq__item">
+          <summary>¿Qué es Rhabit?</summary>
+          <p>Rhabit es un calendario que une tus <strong>hábitos</strong>, <strong>entrenos</strong>, <strong>estudio</strong> y <strong>metas</strong>, y los convierte en una racha diaria que te ayuda a mantener la constancia.</p>
+        </details>
+        <details class="faq__item">
+          <summary>¿Cuándo estará disponible?</summary>
+          <p>Rhabit llegará <strong>próximamente a iOS y Android</strong>. Apúntate a la lista de espera para recibir el aviso de lanzamiento y regalos exclusivos.</p>
+        </details>
+        <details class="faq__item">
+          <summary>¿Cuánto cuesta apuntarse a la lista de espera?</summary>
+          <p>Es <strong>gratis</strong>. Solo dejas tu correo o un canal de contacto y te avisamos el día del lanzamiento; los primeros reciben regalos exclusivos.</p>
+        </details>
       </div>
     </section>
 
@@ -370,13 +593,15 @@
     <section class="section finalcta">
       <div class="finalcta__box">
         <div class="finalcta__media">
-          <video class="finalcta__video" src="assets/celebrate.mp4" autoplay loop muted playsinline></video>
+          <video class="finalcta__video" id="cta-celebrate" src="assets/celebrate.mp4" width="1428" height="1372" autoplay muted playsinline preload="metadata" aria-hidden="true" tabindex="-1"></video>
+          <video class="finalcta__video finalcta__video--breath" id="cta-breathe" src="assets/breathe.mp4" width="1428" height="1372" loop muted playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+          <div class="finalcta__ring"></div>
           <div class="finalcta__fade"></div>
         </div>
         <div class="finalcta__content">
           <h2>Sé de los primeros en <span class="grad">Rhabit</span></h2>
           <p>Apúntate y te avisamos al lanzamiento — con <strong>regalos exclusivos</strong>.</p>
-          <a href="#waitlist" class="btn-lg"><svg class="ico"><use href="#i-gift"/></svg> Quiero mi plaza</a>
+          <a href="#waitlist" class="btn-lg"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-gift"/></svg> Quiero mi plaza</a>
         </div>
       </div>
     </section>
@@ -385,7 +610,7 @@
 
   <footer class="footer">
     <div class="footer__brand">
-      <img src="assets/rabbit.png" alt="" />
+      <img src="assets/rabbit.png" alt="" width="28" height="28" loading="lazy" decoding="async" aria-hidden="true" />
       <span>Rhabit</span>
     </div>
     <p>No avanzas de un salto. Avanzas cada salto.</p>

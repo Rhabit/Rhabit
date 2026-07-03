@@ -909,3 +909,41 @@ if (storeCards.length) {
     storeCards.forEach(c => c.classList.add("shown"));
   }
 }
+
+/* --- CTA final: al terminar la celebración, arranca la respiración (como en la app) --- */
+(function initFinalCtaVideo() {
+  const celeb = document.getElementById("cta-celebrate");
+  const breathe = document.getElementById("cta-breathe");
+  if (!celeb || !breathe) return;
+
+  // Al terminar la celebración, arranca la respiración (crossfade, como en la app).
+  celeb.addEventListener("ended", () => {
+    try { breathe.currentTime = 0; } catch (e) {}
+    const p = breathe.play();
+    const reveal = () => breathe.classList.add("shown");
+    if (p && typeof p.then === "function") p.then(reveal).catch(reveal);
+    else reveal();
+  });
+
+  // Reinicia la celebración desde el principio (oculta la respiración).
+  function playCelebration() {
+    breathe.classList.remove("shown");
+    breathe.pause();
+    try { celeb.currentTime = 0; } catch (e) {}
+    const p = celeb.play();
+    if (p && typeof p.then === "function") p.catch(() => {});
+  }
+
+  // Al alejarse de la vista y volver, vuelve a reproducir la celebración.
+  const media = celeb.closest(".finalcta__media") || celeb;
+  if ("IntersectionObserver" in window) {
+    let armed = false;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) { armed = true; return; }
+        if (armed) { armed = false; playCelebration(); }
+      });
+    }, { threshold: 0.5 });
+    io.observe(media);
+  }
+})();

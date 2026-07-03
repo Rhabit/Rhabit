@@ -1,0 +1,29 @@
+# robots.txt — Rhabit
+# Se permite el rastreo completo del sitio público.
+User-agent: *
+Allow: /
+
+# Recursos internos que no aportan valor de indexación
+Disallow: /collector/
+Disallow: /hashes.txt
+
+# Rastreadores de IA (búsqueda generativa) — permitidos explícitamente
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+
+# Dominio canónico preferido (lo leen Yandex/otros; Google lo ignora)
+Host: rhabit.app
+
+Sitemap: https://rhabit.app/sitemap.xml

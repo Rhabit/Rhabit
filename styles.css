@@ -116,7 +116,7 @@ a{color:inherit;text-decoration:none}
   flex:1;background:transparent;border:0;outline:none;color:var(--text);
   font-size:17px;padding:14px 16px;font-family:inherit;
 }
-.waitlist__input::placeholder{color:#7a7062}
+.waitlist__input::placeholder{color:#8f8578}
 .waitlist__btn{
   background:linear-gradient(100deg,var(--accent),var(--accent-soft));
   color:#fff;border:0;border-radius:11px;font-family:inherit;font-size:16px;font-weight:700;
@@ -319,8 +319,6 @@ a{color:inherit;text-decoration:none}
   width:38px;height:38px;border-radius:10px;flex:none;object-fit:cover;background:#000;
   border:1px solid var(--border);
 }
-.gym-thumb--ph{display:grid;place-items:center}
-.gym-thumb--ph .ico{width:18px;height:18px;stroke:var(--accent)}
 .gym-thumbbtn{
   position:relative;width:38px;height:38px;flex:none;padding:0;border:0;background:none;
   cursor:pointer;border-radius:10px;
@@ -576,12 +574,6 @@ a{color:inherit;text-decoration:none}
   color:var(--accent);margin-bottom:3px;
 }
 .sw-title{font-size:21px;font-weight:800;letter-spacing:-.02em;line-height:1}
-.sw-close{
-  width:32px;height:32px;border-radius:50%;flex:none;cursor:pointer;
-  display:grid;place-items:center;color:var(--text);
-  background:var(--white05);border:1px solid var(--border);
-}
-.sw-close .ico{width:16px;height:16px}
 /* Progreso segmentado (tipo historias) */
 .sw-prog{display:flex;gap:4px;padding:2px 2px 12px}
 .sw-seg{flex:1;height:4px;border-radius:99px;background:var(--white05);overflow:hidden}
@@ -763,9 +755,23 @@ a{color:inherit;text-decoration:none}
   position:absolute;inset:0;width:100%;height:100%;
   object-fit:cover;object-position:center 20%;z-index:0;   /* menos recorte arriba */
 }
+/* Vídeo de respiración: encima del de celebración, aparece con crossfade al terminar */
+.finalcta__video--breath{opacity:0;transition:opacity .45s var(--ease)}
+.finalcta__video--breath.shown{opacity:1}
+/* Aro luminoso girando sobre el conejo — igual que la app (ProcessingScreen).
+   Centrado sobre el círculo pintado del vídeo; base opaca + segmento superior lit. */
+.finalcta__ring{
+  position:absolute;left:50%;top:66%;width:75.5%;aspect-ratio:1;z-index:1;
+  transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;
+  border:3.6px solid #73370c;border-top-color:#ffb366;
+  box-shadow:0 0 16px rgba(255,150,60,.28);
+  animation:ctaSpin 3.6s linear infinite;
+}
+@keyframes ctaSpin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.finalcta__ring{animation:none}}
 /* Degradado inferior IGUAL que la app (welcomeFade): band inferior, transparente → negro */
 .finalcta__fade{
-  position:absolute;left:0;right:0;bottom:0;height:28%;z-index:1;pointer-events:none;
+  position:absolute;left:0;right:0;bottom:0;height:28%;z-index:2;pointer-events:none;
   background:linear-gradient(to bottom,
     rgba(0,0,0,0) 0%,
     rgba(0,0,0,.92) 55%,
@@ -853,3 +859,20 @@ a{color:inherit;text-decoration:none}
   .phone{width:min(266px,86vw)}
   .storecard{padding:14px}
 }
+
+/* ── FAQ ─────────────────────────────────────────────── */
+.faq__list{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.faq__item{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:0 20px;transition:border-color .3s var(--ease)}
+.faq__item[open]{border-color:var(--accent-soft)}
+.faq__item summary{list-style:none;cursor:pointer;padding:17px 0;font-weight:700;font-size:16.5px;color:var(--text);display:flex;justify-content:space-between;align-items:center;gap:16px}
+.faq__item summary::-webkit-details-marker{display:none}
+.faq__item summary::after{content:"";width:10px;height:10px;border-right:2px solid var(--dim);border-bottom:2px solid var(--dim);transform:rotate(45deg);transition:transform .3s var(--ease);flex:0 0 auto;margin-right:3px}
+.faq__item[open] summary::after{transform:rotate(-135deg)}
+.faq__item summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:6px}
+.faq__item p{color:var(--dim);font-size:15px;line-height:1.6;padding:0 0 18px}
+
+/* ── Accesibilidad: enlace de salto y focus visible ── */
+.skip-link{position:absolute;left:-9999px;top:0;z-index:200;background:var(--accent);color:#1a0f04;padding:10px 16px;border-radius:0 0 10px 0;font-weight:700}
+.skip-link:focus{left:0}
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}

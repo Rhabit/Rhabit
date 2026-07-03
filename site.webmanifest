@@ -1,0 +1,35 @@
+{
+  "name": "Rhabit — Hábitos, entrenos y estudio en un calendario",
+  "short_name": "Rhabit",
+  "description": "Rhabit reúne tus hábitos, entrenos y sesiones de estudio en un calendario y los convierte en una racha que no querrás romper.",
+  "lang": "es",
+  "dir": "ltr",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#090906",
+  "theme_color": "#090906",
+  "categories": ["health", "lifestyle", "productivity"],
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
