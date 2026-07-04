@@ -7,6 +7,11 @@
    Al cambiar de idioma se guarda en localStorage y se recarga.
    ============================================================ */
 (function () {
+  // URL limpia: si se cargó como /index.html, quítalo de la barra sin recargar.
+  if (location.pathname.endsWith("/index.html")) {
+    history.replaceState(null, "", location.pathname.slice(0, -"index.html".length) + location.search);
+  }
+
   const LANGS = ["es", "en", "de", "fr", "it"];
 
   function detectLang() {
