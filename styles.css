@@ -269,7 +269,6 @@ a{color:inherit;text-decoration:none}
   .feature-row--reverse .feature-row__text{order:1}
   .feature-row--reverse .phone-stage{order:2}
   .feature-row__text p{margin-left:auto;margin-right:auto}
-  .phone--tilt-r,.phone--tilt-l{transform:rotateY(0) rotateX(2deg)}
 }
 
 /* ---------- Iconos (line-style) ---------- */
@@ -760,14 +759,17 @@ a{color:inherit;text-decoration:none}
 .finalcta__video--breath.shown{opacity:1}
 /* Aro luminoso girando sobre el conejo — igual que la app (ProcessingScreen).
    Centrado sobre el círculo pintado del vídeo; base opaca + segmento superior lit. */
+@property --ring-angle{syntax:'<angle>';inherits:false;initial-value:0deg}
 .finalcta__ring{
   position:absolute;left:50%;top:66%;width:75.5%;aspect-ratio:1;z-index:1;
   transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;
-  border:3.6px solid #73370c;border-top-color:#ffb366;
-  box-shadow:0 0 16px rgba(255,150,60,.28);
-  animation:ctaSpin 3.6s linear infinite;
+  background:conic-gradient(from var(--ring-angle),
+    rgba(115,55,12,.5),rgba(255,179,102,.7),rgba(115,55,12,.5));
+  -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 3.6px),#000 calc(100% - 3.6px));
+  mask:radial-gradient(farthest-side,transparent calc(100% - 3.6px),#000 calc(100% - 3.6px));
+  animation:ctaGlow 5s ease-in-out infinite alternate;
 }
-@keyframes ctaSpin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+@keyframes ctaGlow{from{--ring-angle:-70deg}to{--ring-angle:70deg}}
 @media(prefers-reduced-motion:reduce){.finalcta__ring{animation:none}}
 /* Degradado inferior IGUAL que la app (welcomeFade): band inferior, transparente → negro */
 .finalcta__fade{
