@@ -220,7 +220,7 @@
 </head>
 <body>
 
-  <a class="skip-link" href="#top">Saltar al contenido</a>
+  <a class="skip-link" href="#top" data-i18n="skip">Saltar al contenido</a>
 
   <!-- Sprite de iconos (line-style, como la app) -->
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -268,9 +268,17 @@
         <span>Rhabit</span>
       </a>
       <nav class="nav__links">
-        <a href="#features">Cómo funciona</a>
-        <a href="#showcase">La app</a>
-        <a href="#waitlist" class="nav__cta">Apúntate</a>
+        <a href="#features" data-i18n="nav.how">Cómo funciona</a>
+        <a href="#showcase" data-i18n="nav.app">La app</a>
+        <a href="donar.html" data-i18n="nav.support">Apóyanos</a>
+        <a href="#waitlist" class="nav__cta" data-i18n="nav.join">Apúntate</a>
+        <select class="lang-select" id="lang-select" aria-label="Idioma">
+          <option value="es">ES</option>
+          <option value="en">EN</option>
+          <option value="de">DE</option>
+          <option value="fr">FR</option>
+          <option value="it">IT</option>
+        </select>
       </nav>
     </div>
   </header>
@@ -282,14 +290,14 @@
       <div class="hero__inner">
         <img src="assets/rabbit.png" alt="Rhabit, la mascota conejo de la app" class="hero__mascot" width="96" height="96" decoding="async" fetchpriority="high" />
 
-        <span class="badge"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-rocket"/></svg> Próximamente · Lista de espera abierta</span>
+        <span class="badge"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-rocket"/></svg> <span data-i18n="badge">Próximamente · Lista de espera abierta</span></span>
 
-        <h1 class="hero__title">
+        <h1 class="hero__title" data-i18n-html="hero.title">
           Salta <span class="grad">hoy</span>.<br />
           Mañana estarás más cerca.
         </h1>
 
-        <p class="hero__sub">
+        <p class="hero__sub" data-i18n-html="hero.sub">
           Rhabit es un calendario que une tus <strong>hábitos</strong>, <strong>entrenos</strong>,
           <strong>estudio</strong> y <strong>metas</strong>, y los convierte en una racha que no querrás romper.
         </p>
@@ -304,21 +312,23 @@
                 name="email"
                 class="waitlist__input"
                 placeholder="tu@correo.com"
+                data-i18n-ph="form.emailPh"
                 autocomplete="email"
                 required
                 aria-label="Tu correo electrónico"
+                data-i18n-aria="form.emailAria"
               />
-              <button type="submit" class="waitlist__btn">
+              <button type="submit" class="waitlist__btn" data-i18n="form.notify">
                 Avísame al salir
               </button>
             </div>
             <p class="waitlist__hint" id="form-hint">
-              <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-gift"/></svg> Los que se apunten ahora reciben <strong>regalos exclusivos</strong> el día del lanzamiento.
+              <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-gift"/></svg> <span data-i18n-html="hero.hint">Los que se apunten ahora reciben <strong>regalos exclusivos</strong> el día del lanzamiento.</span>
             </p>
           </form>
 
           <div class="altch" id="altch">
-            <div class="altch__sep"><span>o avísame por otra vía</span></div>
+            <div class="altch__sep"><span data-i18n="altch.sep">o avísame por otra vía</span></div>
             <div class="altch__chips" id="altch-chips">
               <button type="button" class="altch__chip" data-ch="whatsapp"  aria-label="WhatsApp"  style="--bc:#25d366"><svg class="bico" aria-hidden="true" focusable="false"><use href="#b-whatsapp"/></svg></button>
               <button type="button" class="altch__chip" data-ch="instagram" aria-label="Instagram" style="--bc:#e1306c"><svg class="bico" aria-hidden="true" focusable="false"><use href="#b-instagram"/></svg></button>
@@ -331,10 +341,10 @@
               <div class="waitlist__row">
                 <span class="altch__badge" id="altch-badge"><svg class="bico" aria-hidden="true" focusable="false"><use href="#b-whatsapp"/></svg></span>
                 <input type="text" id="altch-input" class="waitlist__input" autocomplete="off" aria-label="Tu usuario o número" />
-                <button type="submit" class="waitlist__btn">Avísame</button>
+                <button type="submit" class="waitlist__btn" data-i18n="altch.notify">Avísame</button>
               </div>
               <p class="waitlist__hint">
-                <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Te avisaremos por <strong id="altch-name">WhatsApp</strong> el día del lanzamiento.
+                <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> <span data-i18n-html="altch.hint">Te avisaremos por <strong id="altch-name">WhatsApp</strong> el día del lanzamiento.</span>
               </p>
             </form>
           </div>
@@ -347,44 +357,44 @@
         </div>
 
         <ul class="hero__trust">
-          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Sin spam, solo el aviso de lanzamiento</li>
-          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Tu correo se guarda cifrado</li>
-          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> Regalos garantizados para los primeros</li>
+          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> <span data-i18n="trust1">Sin spam, solo el aviso de lanzamiento</span></li>
+          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> <span data-i18n="trust2">Tu correo se guarda cifrado</span></li>
+          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> <span data-i18n="trust3">Regalos garantizados para los primeros</span></li>
         </ul>
       </div>
     </section>
 
     <!-- BANDA DE VALOR -->
     <section class="strip">
-      <div class="strip__item"><span class="strip__num"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-signal"/></svg></span><span>Estadísticas de un año</span></div>
-      <div class="strip__item"><span class="strip__num"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-dumbbell"/></svg></span><span>+600 ejercicios animados</span></div>
-      <div class="strip__item"><span class="strip__num"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-flame"/></svg></span><span>+150 hábitos</span></div>
-      <div class="strip__item"><span class="strip__num"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-target"/></svg></span><span>Metas y calendario</span></div>
+      <div class="strip__item"><span class="strip__num"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-signal"/></svg></span><span data-i18n="strip1">Estadísticas de un año</span></div>
+      <div class="strip__item"><span class="strip__num"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-dumbbell"/></svg></span><span data-i18n="strip2">+600 ejercicios animados</span></div>
+      <div class="strip__item"><span class="strip__num"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-flame"/></svg></span><span data-i18n="strip3">+150 hábitos</span></div>
+      <div class="strip__item"><span class="strip__num"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-target"/></svg></span><span data-i18n="strip4">Metas y calendario</span></div>
     </section>
 
     <!-- FEATURES -->
     <section class="section" id="features">
       <div class="section__head">
-        <span class="eyebrow">Cómo funciona</span>
-        <h2>Simple de usar. Difícil de dejar.</h2>
-        <p>Eliges tu objetivo, Rhabit te propone hábitos a tu medida y tú solo tienes que ir marcando. Un salto no es nada. Saltar cada día lo es todo.</p>
+        <span class="eyebrow" data-i18n="feat.eyebrow">Cómo funciona</span>
+        <h2 data-i18n="feat.title">Simple de usar. Difícil de dejar.</h2>
+        <p data-i18n="feat.sub">Eliges tu objetivo, Rhabit te propone hábitos a tu medida y tú solo tienes que ir marcando. Un salto no es nada. Saltar cada día lo es todo.</p>
       </div>
 
       <div class="steps">
         <div class="step">
           <div class="step__n">1</div>
-          <h3>Cuéntanos tu objetivo</h3>
-          <p>Salud, forma física, estudio, calma… El onboarding te arma un plan de hábitos personalizado en segundos.</p>
+          <h3 data-i18n="step1.t">Cuéntanos tu objetivo</h3>
+          <p data-i18n="step1.p">Salud, forma física, estudio, calma… El onboarding te arma un plan de hábitos personalizado en segundos.</p>
         </div>
         <div class="step">
           <div class="step__n">2</div>
-          <h3>Marca tu día</h3>
-          <p>Un toque para completar cada hábito, entreno o sesión. Sin fricción, sin menús eternos.</p>
+          <h3 data-i18n="step2.t">Marca tu día</h3>
+          <p data-i18n="step2.p">Un toque para completar cada hábito, entreno o sesión. Sin fricción, sin menús eternos.</p>
         </div>
         <div class="step">
           <div class="step__n">3</div>
-          <h3>Mantén la racha</h3>
-          <p>Ve tu progreso, celebra tus logros y no rompas la cadena. La constancia se vuelve adictiva.</p>
+          <h3 data-i18n="step3.t">Mantén la racha</h3>
+          <p data-i18n="step3.p">Ve tu progreso, celebra tus logros y no rompas la cadena. La constancia se vuelve adictiva.</p>
         </div>
       </div>
     </section>
@@ -392,17 +402,17 @@
     <!-- SHOWCASE con mockups 3D -->
     <section class="section showcase" id="showcase">
       <div class="section__head">
-        <span class="eyebrow">Dentro de la app</span>
-        <h2>Todo lo que Rhabit hace por ti</h2>
-        <p>Entrenos animados, un calendario enfocado en disciplina y tus hábitos del día — todo en un diseño oscuro y elegante. Interactúa con las pantallas (solo son una muestra, sin funcionalidad real).</p>
+        <span class="eyebrow" data-i18n="show.eyebrow">Dentro de la app</span>
+        <h2 data-i18n="show.title">Todo lo que Rhabit hace por ti</h2>
+        <p data-i18n="show.sub">Entrenos animados, un calendario enfocado en disciplina y tus hábitos del día — todo en un diseño oscuro y elegante. Interactúa con las pantallas (solo son una muestra, sin funcionalidad real).</p>
       </div>
 
       <!-- Fila 1 -->
       <div class="feature-row">
         <div class="feature-row__text">
-          <span class="pill">Entrenos</span>
-          <h3>Entrena con guía visual</h3>
-          <p>Más de 600 ejercicios con animaciones en 3D que te muestran la técnica exacta. Registra series, repeticiones y peso, y deja que Rhabit lleve la cuenta de tu progreso.</p>
+          <span class="pill" data-i18n="row1.pill">Entrenos</span>
+          <h3 data-i18n="row1.t">Entrena con guía visual</h3>
+          <p data-i18n="row1.p">Más de 600 ejercicios con animaciones en 3D que te muestran la técnica exacta. Registra series, repeticiones y peso, y deja que Rhabit lleve la cuenta de tu progreso.</p>
         </div>
         <div class="phone-stage">
           <div class="phone phone--tilt-r">
@@ -414,9 +424,9 @@
       <!-- Fila 2 (invertida) — CALENDARIO recreado -->
       <div class="feature-row feature-row--reverse">
         <div class="feature-row__text">
-          <span class="pill">Organización</span>
-          <h3>Tu mes entero de un vistazo</h3>
-          <p>El calendario reúne tus hábitos y rachas en una sola vista: cada día se colorea según lo que completaste. Y debajo, tus franjas horarias con lo que toca hoy. Toca un día o cambia de mes para explorarlo.</p>
+          <span class="pill" data-i18n="row2.pill">Organización</span>
+          <h3 data-i18n="row2.t">Tu mes entero de un vistazo</h3>
+          <p data-i18n="row2.p">El calendario reúne tus hábitos y rachas en una sola vista: cada día se colorea según lo que completaste. Y debajo, tus franjas horarias con lo que toca hoy. Toca un día o cambia de mes para explorarlo.</p>
         </div>
         <div class="phone-stage">
           <div class="phone phone--tilt-l">
@@ -426,11 +436,11 @@
                 <span class="app-bar__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-signal"/></svg><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-battery"/></svg></span>
               </div>
               <div class="cal-head">
-                <button class="cal-nav" data-cal-prev aria-label="Mes anterior">‹</button>
+                <button class="cal-nav" data-cal-prev aria-label="Mes anterior" data-i18n-aria="aria.prevMonth">‹</button>
                 <div class="cal-title" id="cal-title">Julio <b>2026</b></div>
-                <button class="cal-nav" data-cal-next aria-label="Mes siguiente">›</button>
+                <button class="cal-nav" data-cal-next aria-label="Mes siguiente" data-i18n-aria="aria.nextMonth">›</button>
               </div>
-              <div class="cal-filter"><span class="cal-dot"></span>Todos los hábitos <svg class="ico cal-chev"><use href="#i-chevron-down"/></svg></div>
+              <div class="cal-filter"><span class="cal-dot"></span><span data-i18n="cal.filter">Todos los hábitos</span> <svg class="ico cal-chev"><use href="#i-chevron-down"/></svg></div>
               <div class="cal-weekdays">
                 <span class="cal-wk"></span>
                 <span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span><span>D</span>
@@ -452,9 +462,9 @@
       <!-- Fila 3 — HÁBITOS DEL DÍA recreado -->
       <div class="feature-row">
         <div class="feature-row__text">
-          <span class="pill">Hábitos</span>
-          <h3>Repasa tu día con un swipe</h3>
-          <p>Cada noche, Rhabit te muestra tus hábitos como tarjetas. Desliza a la derecha si lo hiciste, a la izquierda si no, o arriba para dejarlo para más tarde. Rápido, adictivo y satisfactorio. Pruébalo aquí mismo.</p>
+          <span class="pill" data-i18n="row3.pill">Hábitos</span>
+          <h3 data-i18n="row3.t">Repasa tu día con un swipe</h3>
+          <p data-i18n="row3.p">Cada noche, Rhabit te muestra tus hábitos como tarjetas. Desliza a la derecha si lo hiciste, a la izquierda si no, o arriba para dejarlo para más tarde. Rápido, adictivo y satisfactorio. Pruébalo aquí mismo.</p>
         </div>
         <div class="phone-stage">
           <div class="phone phone--tilt-r">
@@ -465,16 +475,16 @@
               </div>
               <div class="sw-head">
                 <div class="sw-head__text">
-                  <span class="sw-kicker">Revisar hábitos</span>
-                  <h4 class="sw-title">Swipe de hábitos</h4>
+                  <span class="sw-kicker" data-i18n="sw.kicker">Revisar hábitos</span>
+                  <h4 class="sw-title" data-i18n="sw.title">Swipe de hábitos</h4>
                 </div>
               </div>
               <div class="sw-prog" id="sw-prog"><!-- segmentos por JS --></div>
               <div class="sw-deck" id="sw-deck"><!-- tarjetas por JS --></div>
               <div class="sw-actions">
-                <button class="sw-btn sw-btn--fail" data-act="fail" aria-label="No hecho"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-x"/></svg></button>
-                <button class="sw-btn sw-btn--done" data-act="done" aria-label="Hecho"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg></button>
-                <button class="sw-btn sw-btn--later" data-act="later" aria-label="Más tarde"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg></button>
+                <button class="sw-btn sw-btn--fail" data-act="fail" aria-label="No hecho" data-i18n-aria="aria.fail"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-x"/></svg></button>
+                <button class="sw-btn sw-btn--done" data-act="done" aria-label="Hecho" data-i18n-aria="aria.done"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg></button>
+                <button class="sw-btn sw-btn--later" data-act="later" aria-label="Más tarde" data-i18n-aria="aria.later"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg></button>
               </div>
             </div>
           </div>
@@ -484,9 +494,9 @@
       <!-- Fila 4 (invertida) — REGISTRO DE ENTRENO recreado -->
       <div class="feature-row feature-row--reverse">
         <div class="feature-row__text">
-          <span class="pill">Entrenos</span>
-          <h3>Registra cada serie</h3>
-          <p>Anota el peso y las repeticiones, marca cada serie completada y consulta la técnica del ejercicio en vídeo. Rhabit suma tu volumen y tus series al instante. Edita los valores y marca las series aquí mismo.</p>
+          <span class="pill" data-i18n="row4.pill">Entrenos</span>
+          <h3 data-i18n="row4.t">Registra cada serie</h3>
+          <p data-i18n="row4.p">Anota el peso y las repeticiones, marca cada serie completada y consulta la técnica del ejercicio en vídeo. Rhabit suma tu volumen y tus series al instante. Edita los valores y marca las series aquí mismo.</p>
         </div>
         <div class="phone-stage">
           <div class="phone phone--tilt-l">
@@ -496,25 +506,42 @@
                 <span class="app-bar__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-signal"/></svg><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-battery"/></svg></span>
               </div>
               <div class="gym-stats">
-                <div class="gym-stat"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg><b id="gym-time">12:04</b><span>Tiempo</span></div>
+                <div class="gym-stat"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-clock"/></svg><b id="gym-time">12:04</b><span data-i18n="gym.time">Tiempo</span></div>
                 <div class="gym-statdiv"></div>
-                <div class="gym-stat"><b id="gym-vol">0</b><span>Volumen</span></div>
+                <div class="gym-stat"><b id="gym-vol">0</b><span data-i18n="gym.volume">Volumen</span></div>
                 <div class="gym-statdiv"></div>
-                <div class="gym-stat"><b id="gym-sets">0</b><span>Series</span></div>
+                <div class="gym-stat"><b id="gym-sets">0</b><span data-i18n="gym.series">Series</span></div>
+                <div class="gym-statdiv"></div>
+                <button type="button" class="gym-stat gym-stat--musc" id="gym-musc-btn" aria-label="Ver músculos trabajados" data-i18n-aria="aria.viewMuscles">
+                  <span class="gym-musc-top"><img class="gym-musc-ico" src="assets/musculos/cuerpo.png" alt="" /><b id="gym-musc">0</b></span>
+                  <span data-i18n="gym.muscles">Músculos</span>
+                </button>
               </div>
               <div class="gym-scroll" id="gym-scroll"><!-- generado por JS --></div>
 
               <!-- Ventana emergente (dentro del móvil): detalle del ejercicio -->
               <div class="exmodal" id="exmodal" hidden>
                 <div class="exmodal__backdrop" data-exclose></div>
-                <div class="exmodal__sheet" role="dialog" aria-modal="true" aria-label="Detalle del ejercicio">
+                <div class="exmodal__sheet" role="dialog" aria-modal="true" aria-label="Detalle del ejercicio" data-i18n-aria="aria.exDetail">
                   <div class="exmodal__grab"></div>
-                  <button class="exmodal__close" data-exclose aria-label="Cerrar"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-x"/></svg></button>
+                  <button class="exmodal__close" data-exclose aria-label="Cerrar" data-i18n-aria="aria.close"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-x"/></svg></button>
                   <video class="exmodal__video" id="exmodal-video" width="1396" height="800" loop muted playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
                   <div class="exmodal__name" id="exmodal-name"></div>
                   <div class="exmodal__prs" id="exmodal-prs"><!-- generado por JS --></div>
-                  <div class="exmodal__setstitle">Series de hoy</div>
+                  <div class="exmodal__setstitle" data-i18n="ex.today">Series de hoy</div>
                   <div class="exmodal__sets" id="exmodal-sets"><!-- generado por JS --></div>
+                </div>
+              </div>
+
+              <!-- Ventana emergente (dentro del móvil): mapa de músculos trabajados -->
+              <div class="exmodal muscmodal" id="muscmodal" hidden>
+                <div class="exmodal__backdrop" data-muscclose></div>
+                <div class="exmodal__sheet" role="dialog" aria-modal="true" aria-label="Músculos trabajados" data-i18n-aria="musc.title">
+                  <div class="exmodal__grab"></div>
+                  <button class="exmodal__close" data-muscclose aria-label="Cerrar" data-i18n-aria="aria.close"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-x"/></svg></button>
+                  <div class="exmodal__name" data-i18n="musc.title">Músculos trabajados</div>
+                  <div class="bodymap" id="bodymap"><!-- generado por JS --></div>
+                  <div class="musclist" id="musclist"><!-- generado por JS --></div>
                 </div>
               </div>
             </div>
@@ -526,18 +553,18 @@
     <!-- GRID de funcionalidades -->
     <section class="section">
       <div class="section__head">
-        <span class="eyebrow">Todo en una app</span>
-        <h2>Una herramienta, cada rincón de tu día</h2>
+        <span class="eyebrow" data-i18n="grid.eyebrow">Todo en una app</span>
+        <h2 data-i18n="grid.title">Una herramienta, cada rincón de tu día</h2>
       </div>
       <div class="grid">
-        <article class="card"><span class="card__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-flame"/></svg></span><h3>Rachas</h3><p>El conejo se enciende con tu constancia. No rompas la cadena.</p></article>
-        <article class="card"><span class="card__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-dumbbell"/></svg></span><h3>Gimnasio</h3><p>Rutinas, series y +600 ejercicios animados en 3D.</p></article>
-        <article class="card"><span class="card__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-book"/></svg></span><h3>Estudio</h3><p>Sesiones cronometradas y seguimiento de tu foco.</p></article>
-        <article class="card"><span class="card__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-droplet"/></svg></span><h3>Agua</h3><p>Recuerda hidratarte y mide tu ingesta diaria.</p></article>
-        <article class="card"><span class="card__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-target"/></svg></span><h3>Metas</h3><p>Objetivos a largo plazo con progreso visible.</p></article>
-        <article class="card"><span class="card__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-calendar"/></svg></span><h3>Calendario</h3><p>Toda tu semana de hábitos de un vistazo.</p></article>
-        <article class="card"><span class="card__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-wind"/></svg></span><h3>Calma</h3><p>Respiración guiada y hábitos de bienestar mental.</p></article>
-        <article class="card"><span class="card__ico"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-moon"/></svg></span><h3>Modo oscuro</h3><p>Diseño elegante pensado para descansar la vista.</p></article>
+        <article class="card"><span class="card__ico"><img src="assets/streak-rabbit.png" alt="" width="32" height="32" loading="lazy" decoding="async" /></span><h3 style="color:var(--accent)" data-i18n="card.streak.t">Rachas</h3><p data-i18n="card.streak.p">El conejo se enciende con tu constancia. No rompas la cadena.</p></article>
+        <article class="card"><span class="card__ico"><img src="assets/gym-rabbit.png" alt="" width="53" height="32" loading="lazy" decoding="async" /></span><h3 style="color:var(--accent)" data-i18n="card.gym.t">Gimnasio</h3><p data-i18n="card.gym.p">Rutinas, series y +600 ejercicios animados en 3D.</p></article>
+        <article class="card"><span class="card__ico"><img src="assets/study-rabbit.png" alt="" width="25" height="32" loading="lazy" decoding="async" /></span><h3 style="color:var(--accent)" data-i18n="card.study.t">Estudio</h3><p data-i18n="card.study.p">Sesiones cronometradas y seguimiento de tu foco.</p></article>
+        <article class="card"><span class="card__ico"><img src="assets/water-rabbit.png" alt="" width="25" height="32" loading="lazy" decoding="async" /></span><h3 style="color:var(--accent)" data-i18n="card.water.t">Agua</h3><p data-i18n="card.water.p">Recuerda hidratarte y mide tu ingesta diaria.</p></article>
+        <article class="card"><span class="card__ico"><img src="assets/goals-rabbit.png" alt="" width="25" height="32" loading="lazy" decoding="async" /></span><h3 style="color:var(--accent)" data-i18n="card.goals.t">Metas</h3><p data-i18n="card.goals.p">Objetivos a largo plazo con progreso visible.</p></article>
+        <article class="card"><span class="card__ico"><img src="assets/calendar-icon.png" alt="" width="31" height="32" loading="lazy" decoding="async" /></span><h3 style="color:var(--accent)" data-i18n="card.cal.t">Calendario</h3><p data-i18n="card.cal.p">Toda tu semana de hábitos de un vistazo.</p></article>
+        <article class="card"><span class="card__ico"><img src="assets/calm-rabbit.png" alt="" width="24" height="32" loading="lazy" decoding="async" /></span><h3 style="color:var(--accent)" data-i18n="card.calm.t">Calma</h3><p data-i18n="card.calm.p">Respiración guiada y hábitos de bienestar mental.</p></article>
+        <article class="card"><span class="card__ico"><img src="assets/dark-moon.png" alt="" width="41" height="32" loading="lazy" decoding="async" /></span><h3 style="color:var(--accent)" data-i18n="card.dark.t">Modo oscuro</h3><p data-i18n="card.dark.p">Diseño elegante pensado para descansar la vista.</p></article>
       </div>
 
       <!-- Tarjetas de tienda (próximamente, aparecen al hacer scroll) -->
@@ -545,23 +572,23 @@
         <div class="storecard" aria-hidden="true">
           <img class="storecard__icon" src="assets/rabbit.png" alt="" width="52" height="52" loading="lazy" decoding="async" />
           <div class="storecard__info">
-            <span class="storecard__soon"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg> Próximamente</span>
+            <span class="storecard__soon"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg> <span data-i18n="store.soon">Próximamente</span></span>
             <span class="storecard__name">Rhabit</span>
           </div>
           <div class="storecard__badge">
             <svg class="bico" aria-hidden="true" focusable="false"><use href="#b-apple"/></svg>
-            <span><small>Próximamente en</small><b>App Store</b></span>
+            <span><small data-i18n="store.on">Próximamente en</small><b>App Store</b></span>
           </div>
         </div>
         <div class="storecard" aria-hidden="true">
           <img class="storecard__icon" src="assets/rabbit.png" alt="" width="52" height="52" loading="lazy" decoding="async" />
           <div class="storecard__info">
-            <span class="storecard__soon"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg> Próximamente</span>
+            <span class="storecard__soon"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-lock"/></svg> <span data-i18n="store.soon">Próximamente</span></span>
             <span class="storecard__name">Rhabit</span>
           </div>
           <div class="storecard__badge">
             <svg class="bico" aria-hidden="true" focusable="false"><use href="#b-googleplay"/></svg>
-            <span><small>Próximamente en</small><b>Google Play</b></span>
+            <span><small data-i18n="store.on">Próximamente en</small><b>Google Play</b></span>
           </div>
         </div>
       </div>
@@ -570,21 +597,21 @@
     <!-- FAQ -->
     <section class="section faq" id="faq" aria-labelledby="faq-title">
       <div class="section__head">
-        <span class="eyebrow">Preguntas frecuentes</span>
-        <h2 id="faq-title">Todo lo que quieres saber de Rhabit</h2>
+        <span class="eyebrow" data-i18n="faq.eyebrow">Preguntas frecuentes</span>
+        <h2 id="faq-title" data-i18n="faq.title">Todo lo que quieres saber de Rhabit</h2>
       </div>
       <div class="faq__list">
         <details class="faq__item">
-          <summary>¿Qué es Rhabit?</summary>
-          <p>Rhabit es un calendario que une tus <strong>hábitos</strong>, <strong>entrenos</strong>, <strong>estudio</strong> y <strong>metas</strong>, y los convierte en una racha diaria que te ayuda a mantener la constancia.</p>
+          <summary data-i18n="faq.q1">¿Qué es Rhabit?</summary>
+          <p data-i18n-html="faq.a1">Rhabit es un calendario que une tus <strong>hábitos</strong>, <strong>entrenos</strong>, <strong>estudio</strong> y <strong>metas</strong>, y los convierte en una racha diaria que te ayuda a mantener la constancia.</p>
         </details>
         <details class="faq__item">
-          <summary>¿Cuándo estará disponible?</summary>
-          <p>Rhabit llegará <strong>próximamente a iOS y Android</strong>. Apúntate a la lista de espera para recibir el aviso de lanzamiento y regalos exclusivos.</p>
+          <summary data-i18n="faq.q2">¿Cuándo estará disponible?</summary>
+          <p data-i18n-html="faq.a2">Rhabit llegará <strong>próximamente a iOS y Android</strong>. Apúntate a la lista de espera para recibir el aviso de lanzamiento y regalos exclusivos.</p>
         </details>
         <details class="faq__item">
-          <summary>¿Cuánto cuesta apuntarse a la lista de espera?</summary>
-          <p>Es <strong>gratis</strong>. Solo dejas tu correo o un canal de contacto y te avisamos el día del lanzamiento; los primeros reciben regalos exclusivos.</p>
+          <summary data-i18n="faq.q3">¿Cuánto cuesta apuntarse a la lista de espera?</summary>
+          <p data-i18n-html="faq.a3">Es <strong>gratis</strong>. Solo dejas tu correo o un canal de contacto y te avisamos el día del lanzamiento; los primeros reciben regalos exclusivos.</p>
         </details>
       </div>
     </section>
@@ -599,9 +626,9 @@
           <div class="finalcta__fade"></div>
         </div>
         <div class="finalcta__content">
-          <h2>Sé de los primeros en <span class="grad">Rhabit</span></h2>
-          <p>Apúntate y te avisamos al lanzamiento — con <strong>regalos exclusivos</strong>.</p>
-          <a href="#waitlist" class="btn-lg"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-gift"/></svg> Quiero mi plaza</a>
+          <h2 data-i18n-html="cta.title">Sé de los primeros en <span class="grad">Rhabit</span></h2>
+          <p data-i18n-html="cta.p">Apúntate y te avisamos al lanzamiento — con <strong>regalos exclusivos</strong>.</p>
+          <a href="#waitlist" class="btn-lg"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-gift"/></svg> <span data-i18n="cta.btn">Quiero mi plaza</span></a>
         </div>
       </div>
     </section>
@@ -613,10 +640,11 @@
       <img src="assets/rabbit.png" alt="" width="28" height="28" loading="lazy" decoding="async" aria-hidden="true" />
       <span>Rhabit</span>
     </div>
-    <p>No avanzas de un salto. Avanzas cada salto.</p>
-    <small>© <span id="year"></span> Rhabit · Próximamente en iOS y Android</small>
+    <p data-i18n="footer.tagline">No avanzas de un salto. Avanzas cada salto.</p>
+    <small>© <span id="year"></span> <span data-i18n="footer.copyTail">Rhabit · Próximamente en iOS y Android</span></small>
   </footer>
 
+  <script src="i18n.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

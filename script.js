@@ -50,7 +50,7 @@ form.addEventListener("submit", async (e) => {
 
   if (!isValidEmail(email)) {
     input.classList.add("invalid");
-    hint.textContent = "Hmm, ese correo no parece válido. Revísalo.";
+    hint.textContent = t("form.invalid");
     input.focus();
     return;
   }
@@ -124,8 +124,9 @@ form.addEventListener("submit", async (e) => {
       }
       current = key;
       chips.querySelectorAll(".altch__chip").forEach(c => c.classList.toggle("sel", c === chip));
-      altInput.placeholder = cfg.ph;
-      altName.textContent = cfg.name;
+      altInput.placeholder = tx(cfg.ph);
+      const nameEl = document.getElementById("altch-name");
+      if (nameEl) nameEl.textContent = cfg.name;
       altBadge.style.setProperty("--ch", cfg.color);
       if (altUse) altUse.setAttribute("href", "#" + cfg.icon);
       altForm.hidden = false;
@@ -233,8 +234,8 @@ form.addEventListener("submit", async (e) => {
 
   // ---- Franja horaria (scrollable, cambia según el día) ----
   function renderSchedule(date) {
-    const label = `${WDAYS[date.getDay()]} ${date.getDate()}`;
-    schTitle.innerHTML = isTodayDate(date) ? `Hoy · <b>${label}</b>` : `<b>${label}</b>`;
+    const label = `${tx(WDAYS[date.getDay()])} ${date.getDate()}`;
+    schTitle.innerHTML = isTodayDate(date) ? `${t("sch.today")} · <b>${label}</b>` : `<b>${label}</b>`;
 
     // Un día tiene franja si tuvo actividad (mes base) y/o una meta puntual.
     const isBaseMonth = date.getFullYear() === TODAY.y && date.getMonth() === TODAY.m;
@@ -249,7 +250,7 @@ form.addEventListener("submit", async (e) => {
       html += `<div class="sch-hour" style="height:${HOUR_H}px"><span>${String(h).padStart(2,"0")}:00</span></div>`;
     }
     if (blocks.length === 0) {
-      html += `<div class="sch-empty" style="top:${7 * HOUR_H + 4}px">Sin actividades este día</div>`;
+      html += `<div class="sch-empty" style="top:${7 * HOUR_H + 4}px">${t("sch.empty")}</div>`;
     }
     for (const b of blocks) {
       const top = (b.h + (b.m || 0) / 60) * HOUR_H;
@@ -257,7 +258,7 @@ form.addEventListener("submit", async (e) => {
       const startStr = `${String(b.h).padStart(2,"0")}:${String(b.m||0).padStart(2,"0")}`;
       html += `<div class="sch-block${b.goal ? " sch-block--goal" : ""}" style="--c:${b.c};top:${top}px;height:${height}px">` +
         `<svg class="ico"><use href="#i-${b.i}"/></svg>` +
-        `<span><b>${b.t}</b><small>${startStr} · ${b.s}</small></span></div>`;
+        `<span><b>${tx(b.t)}</b><small>${startStr} · ${tx(b.s)}</small></span></div>`;
     }
     schBody.style.height = `${24 * HOUR_H}px`;
     schBody.innerHTML = html;
@@ -275,7 +276,7 @@ form.addEventListener("submit", async (e) => {
 
   function render(dir) {
     const { y, m } = view;
-    title.innerHTML = `${MONTHS[m]} <b>${y}</b>`;
+    title.innerHTML = `${tx(MONTHS[m])} <b>${y}</b>`;
     const isBase = y === TODAY.y && m === TODAY.m;
 
     // Animación de transición al cambiar de mes (slide + fade direccional).
@@ -422,12 +423,37 @@ form.addEventListener("submit", async (e) => {
   if (!deck) return;
 
   const HABITS = [
-    { name: "Beber agua",     prompt: "¿Lo hiciste hoy?",     c: "#3fb6ff", i: "droplet" },
-    { name: "Gimnasio",       prompt: "¿Ya lo completaste?",  c: "#ff7a1a", i: "dumbbell" },
-    { name: "Leer 20 min",    prompt: "¿Lo has cumplido hoy?",c: "#f5b14a", i: "book" },
-    { name: "Meditar",        prompt: "¿Lo sacaste adelante?",c: "#9b8cff", i: "wind" },
-    { name: "Comer verduras", prompt: "¿Cómo fue hoy?",       c: "#4fd6a8", i: "leaf" },
+    { name: "Emprendimiento", prompt: "¿Ya lo completaste?",  c: "#ff7a1a", i: "rocket", vid: "work.webp" },
+    { name: "Skin care",      prompt: "¿Cómo fue hoy?",       c: "#f472b6", i: "moon", vid: "skin.webp" },
+    { name: "Meditar",        prompt: "¿Lo sacaste adelante?",c: "#9b8cff", i: "wind", vid: "meditar.webp" },
+    { name: "Beber agua",     prompt: "¿Lo hiciste hoy?",     c: "#3fb6ff", i: "droplet", vid: "agua.webp" },
+    { name: "Leer",           prompt: "¿Lo has cumplido hoy?",c: "#f5b14a", i: "book", vid: "leer.webp" },
   ];
+  // Reproducción por hábito: cada uno estrena UNA URL propia (blob) que luego se
+  // REUTILIZA siempre. Al compartir la misma URL, el navegador mantiene un único
+  // reloj de animación, así que si la tarjeta se oculta y reaparece la reproducción
+  // continúa (no se reinicia). Antes de empezar, la tarjeta muestra el póster.
+  const vidBlobs = {};
+  HABITS.forEach(h => {
+    if (!h.vid || vidBlobs[h.vid] !== undefined) return;
+    vidBlobs[h.vid] = null;
+    fetch(h.vid).then(r => r.blob()).then(b => { vidBlobs[h.vid] = b; }).catch(() => {});
+  });
+  const startedSrc = {};
+  function resetStarted() {
+    Object.values(startedSrc).forEach(u => { if (u && u.startsWith("blob:")) URL.revokeObjectURL(u); });
+    for (const k in startedSrc) delete startedSrc[k];
+  }
+  function startVid(img) {
+    const p = img && img.dataset.vid;
+    if (!p) return;
+    if (!startedSrc[p]) {
+      const b = vidBlobs[p];
+      startedSrc[p] = b ? URL.createObjectURL(b) : p + "?_r=" + Date.now();
+    }
+    if (img.dataset.cur !== startedSrc[p]) { img.src = startedSrc[p]; img.dataset.cur = startedSrc[p]; }
+  }
+
   const TOTAL = HABITS.length;
   const STACK = 3;         // tarjetas visibles a la vez
   const THRESHOLD = 70;    // px para confirmar el gesto
@@ -442,14 +468,14 @@ form.addEventListener("submit", async (e) => {
   const cardHTML = (h) => `
     <div class="sw-card" style="--c:${h.c}">
       <div class="sw-wash"></div>
-      <div class="sw-stamp sw-stamp--done"><svg class="ico"><use href="#i-check"/></svg>Hecho</div>
-      <div class="sw-stamp sw-stamp--fail"><svg class="ico"><use href="#i-x"/></svg>No hecho</div>
-      <div class="sw-stamp sw-stamp--later"><svg class="ico"><use href="#i-clock"/></svg>Más tarde</div>
-      <div class="sw-chip"><i></i> HOY</div>
-      <div class="sw-hero"><svg class="ico"><use href="#i-${h.i}"/></svg></div>
-      <div class="sw-name">${h.name}</div>
-      <div class="sw-prompt">${h.prompt}</div>
-      <div class="sw-swipehint"><svg class="ico"><use href="#i-swipe"/></svg> Desliza o usa los botones</div>
+      <div class="sw-stamp sw-stamp--done"><svg class="ico"><use href="#i-check"/></svg>${t("sw.doneStamp")}</div>
+      <div class="sw-stamp sw-stamp--fail"><svg class="ico"><use href="#i-x"/></svg>${t("sw.failStamp")}</div>
+      <div class="sw-stamp sw-stamp--later"><svg class="ico"><use href="#i-clock"/></svg>${t("sw.laterStamp")}</div>
+      <div class="sw-chip"><i></i> ${t("sw.today")}</div>
+      <div class="sw-hero${h.vid ? " sw-hero--vid" : ""}">${h.vid ? `<img data-vid="${h.vid}" src="${h.vid.replace(".webp", "_poster.webp")}" alt="" aria-hidden="true">` : `<svg class="ico"><use href="#i-${h.i}"/></svg>`}</div>
+      <div class="sw-name">${tx(h.name)}</div>
+      <div class="sw-prompt">${tx(h.prompt)}</div>
+      <div class="sw-swipehint"><svg class="ico"><use href="#i-swipe"/></svg> ${t("sw.hint")}</div>
     </div>`;
 
   // Progreso segmentado (un segmento por hábito).
@@ -466,9 +492,9 @@ form.addEventListener("submit", async (e) => {
       deck.innerHTML = `
         <div class="sw-done">
           <div class="sw-done__ring"><svg class="ico"><use href="#i-check"/></svg></div>
-          <h4>¡Día revisado!</h4>
-          <p>${reviewed} hábito${reviewed === 1 ? "" : "s"} al día · racha a salvo</p>
-          <button class="sw-restart" id="sw-restart">Repetir</button>
+          <h4>${t("sw.doneTitle")}</h4>
+          <p>${t(reviewed === 1 ? "sw.summaryOne" : "sw.summaryMany", { n: reviewed })}</p>
+          <button class="sw-restart" id="sw-restart">${t("sw.repeat")}</button>
         </div>`;
       deck.querySelector("#sw-restart").addEventListener("click", start);
       return;
@@ -483,6 +509,19 @@ form.addEventListener("submit", async (e) => {
       card.style.transform = `translateY(${depth * 8}px) scale(${1 - depth * 0.05})`;
       card.style.zIndex = String(STACK - depth);
       card.style.opacity = depth >= STACK - 1 ? "0.6" : "1";
+      // Pinta el fotograma actual (póster si no ha empezado; posición actual si ya
+      // corre). La de arriba, además, arranca la reproducción.
+      // Si el hábito ya empezó, la tarjeta continúa (misma URL). Si no, la de arriba
+      // arranca; las traseras se quedan con el póster.
+      const img = card.querySelector(".sw-hero--vid img");
+      if (img) {
+        const p = img.dataset.vid;
+        // La de arriba siempre arranca; las demás arrancan ya desde la posición
+        // trasera (una tarjeta antes). Excepción: "Beber agua", que arranca al mostrarse.
+        const preStart = depth === 1 && p !== "agua.webp";
+        if (startedSrc[p]) { img.src = startedSrc[p]; img.dataset.cur = startedSrc[p]; }
+        else if (depth === 0 || preStart) startVid(img);
+      }
       if (depth === 0) attachDrag(card);
       deck.appendChild(card);
     });
@@ -558,6 +597,7 @@ form.addEventListener("submit", async (e) => {
   }
 
   const DIR_LOCK = 8;   // px para fijar el eje del gesto
+  const REVEAL = 40;    // px de arrastre que dejan ver la tarjeta trasera
 
   function attachDrag(card) {
     let sx = 0, sy = 0, dx = 0, dy = 0, dragging = false, lockDir = 0; // 0=libre 1=horiz 2=vert
@@ -591,6 +631,12 @@ form.addEventListener("submit", async (e) => {
       else                    { dx = 0; dy = 0; }
 
       card.style.transform = `translate(${dx}px,${dy}px) rotate(${dx * 0.05}deg)`;
+      // Al descubrir la tarjeta trasera, arranca su animación desde 0.
+      if (Math.abs(dx) > REVEAL || Math.abs(dy) > REVEAL) {
+        const cards = deck.querySelectorAll(".sw-card");
+        const back = cards[cards.length - 2];
+        if (back) startVid(back.querySelector(".sw-hero--vid img"));
+      }
       const dOp = Math.max(0, Math.min(1, dx / THRESHOLD));
       const fOp = Math.max(0, Math.min(1, -dx / THRESHOLD));
       const lOp = Math.max(0, Math.min(1, -dy / THRESHOLD));
@@ -623,6 +669,7 @@ form.addEventListener("submit", async (e) => {
   }
 
   function start() {
+    resetStarted();
     queue = [...HABITS];
     reviewed = 0;
     setProgress();
@@ -681,16 +728,16 @@ form.addEventListener("submit", async (e) => {
   const modalSets = document.getElementById("exmodal-sets");
   function openExModal(ex) {
     modalVid.src = ex.video;
-    modalName.textContent = ex.name;
+    modalName.textContent = tx(ex.name);
     modalPrs.innerHTML =
-      `<div class="expr"><b>${ex.pr.peso}</b><span>Mejor peso</span></div>` +
-      `<div class="expr"><b>${ex.pr.rm}</b><span>1RM est.</span></div>` +
-      `<div class="expr"><b>${ex.pr.vol}</b><span>Volumen</span></div>`;
+      `<div class="expr"><b>${ex.pr.peso}</b><span>${t("gym.bestWeight")}</span></div>` +
+      `<div class="expr"><b>${ex.pr.rm}</b><span>${t("gym.rm")}</span></div>` +
+      `<div class="expr"><b>${ex.pr.vol}</b><span>${t("gym.volume")}</span></div>`;
     modalSets.innerHTML = ex.sets.map((s, i) => {
       const vol = (parseFloat(s.kg) || 0) * (parseInt(s.reps) || 0);
       return `<div class="exset${s.done ? " done" : ""}">` +
         `<span class="exmark">${s.done ? `<svg class="ico"><use href="#i-check"/></svg>` : ""}</span>` +
-        `<b>Serie ${i + 1}</b>` +
+        `<b>${t("gym.set")} ${i + 1}</b>` +
         `<span class="exset__data">${s.kg || "—"} kg × ${s.reps || "—"}</span>` +
         `<span class="exset__vol">${vol ? vol + " kg" : "—"}</span></div>`;
     }).join("");
@@ -710,7 +757,7 @@ form.addEventListener("submit", async (e) => {
     const btn = document.createElement("button");
     btn.type = "button";
     btn.className = "gym-thumbbtn";
-    btn.setAttribute("aria-label", "Ver " + ex.name);
+    btn.setAttribute("aria-label", t("gym.view") + " " + tx(ex.name));
     const v = document.createElement("video");
     v.className = "gym-thumb";
     v.src = ex.video; v.muted = true; v.playsInline = true; v.preload = "metadata";
@@ -728,6 +775,7 @@ form.addEventListener("submit", async (e) => {
   const EXERCISES = [
     {
       name: "Curl de bíceps", video: "assets/ex-curl.mp4",
+      muscles: { principal: "bíceps", secundarios: ["antebrazos"] },
       pr: { peso: "16 kg", rm: "22 kg", vol: "1.9k" },
       sets: [
         { kg: "12", reps: "12", prev: "10×12", done: true },
@@ -737,6 +785,7 @@ form.addEventListener("submit", async (e) => {
     },
     {
       name: "Press de banca", video: "assets/ex-bench.mp4",
+      muscles: { principal: "pecho", secundarios: ["tríceps", "hombros"] },
       pr: { peso: "70 kg", rm: "88 kg", vol: "4.2k" },
       sets: [
         { kg: "50", reps: "10", prev: "47×10", done: false },
@@ -746,6 +795,7 @@ form.addEventListener("submit", async (e) => {
     },
     {
       name: "Remo con polea", video: "assets/ex-row.mp4",
+      muscles: { principal: "espalda alta", secundarios: ["bíceps"] },
       pr: { peso: "60 kg", rm: "75 kg", vol: "3.5k" },
       sets: [
         { kg: "45", reps: "12", prev: "42×12", done: false },
@@ -754,6 +804,7 @@ form.addEventListener("submit", async (e) => {
     },
     {
       name: "Elevaciones laterales", video: "assets/ex-lateral.mp4",
+      muscles: { principal: "hombros", secundarios: ["trapecio"] },
       pr: { peso: "14 kg", rm: "18 kg", vol: "1.2k" },
       sets: [
         { kg: "10", reps: "15", prev: "9×15",  done: false },
@@ -763,6 +814,71 @@ form.addEventListener("submit", async (e) => {
     },
   ];
 
+  // --- Mapa de músculos (réplica del sistema de la app) ---
+  const SECONDARY_WEIGHT = 0.4;
+  const LEVELS = { l2: 500, l3: 1200, l4: 2200 };
+  // Músculo canónico -> bases de capa que lo pintan sobre cuerpo.png.
+  const MUSCLE_LAYERS = {
+    "bíceps":       ["biceps"],
+    "tríceps":      ["triceps"],
+    "antebrazos":   ["antebrazo", "antebrazointerior"],
+    "pecho":        ["pecho", "pectoralmenor", "serratoanterior"],
+    "hombros":      ["hombro", "deltoidesanterior", "deltoideslateral"],
+    "espalda alta": ["dorsales", "trapeciomedio", "trapeciosuperior"],
+    "trapecio":     ["trapeciosuperior", "trapeciomedio", "trapecioinferior"],
+  };
+  const muscleLevel = v => !(v > 0) ? 0 : v >= LEVELS.l4 ? 4 : v >= LEVELS.l3 ? 3 : v >= LEVELS.l2 ? 2 : 1;
+  const levelProgress = v => !(v > 0) ? 0 : Math.min(1, v / LEVELS.l4);
+
+  // Volumen acumulado por músculo a partir de las series marcadas.
+  function muscleLoads() {
+    const vols = {};
+    EXERCISES.forEach(ex => {
+      const vol = ex.sets.filter(s => s.done)
+        .reduce((a, s) => a + (parseFloat(s.kg) || 0) * (parseInt(s.reps) || 0), 0);
+      if (!ex.muscles || !(vol > 0)) return;
+      const p = ex.muscles.principal;
+      if (p) vols[p] = (vols[p] || 0) + vol;
+      (ex.muscles.secundarios || []).forEach(m => { vols[m] = (vols[m] || 0) + vol * SECONDARY_WEIGHT; });
+    });
+    return Object.entries(vols).map(([muscle, value]) => ({ muscle, value }))
+      .sort((a, b) => b.value - a.value);
+  }
+
+  const muscEl  = document.getElementById("gym-musc");
+  const muscBtn = document.getElementById("gym-musc-btn");
+  const muscModal = document.getElementById("muscmodal");
+  const bodymap = document.getElementById("bodymap");
+  const musclist = document.getElementById("musclist");
+
+  function renderMuscles() {
+    const list = muscleLoads();
+    // Capas superpuestas sobre el cuerpo base.
+    const layers = list.flatMap(m => {
+      const lvl = muscleLevel(m.value);
+      const bases = MUSCLE_LAYERS[m.muscle];
+      return (lvl < 1 || !bases) ? [] : bases.map(b => `assets/musculos/${b}-nivel${lvl}.png`);
+    });
+    bodymap.innerHTML =
+      `<img src="assets/musculos/cuerpo.png" alt="" />` +
+      layers.map(src => `<img src="${src}" alt="" />`).join("");
+    musclist.innerHTML = list.length === 0
+      ? `<div class="muscempty">${t("gym.muscleEmpty")}</div>`
+      : list.map(m => {
+          const lvl = muscleLevel(m.value);
+          const ratio = Math.max(0.04, levelProgress(m.value));
+          return `<div class="muscrow"><div class="muscrow__top">` +
+            `<span class="muscrow__name">${tx(m.muscle)}</span>` +
+            `<span class="muscrow__lvl">N${lvl}</span></div>` +
+            `<div class="muscrow__track"><div class="muscrow__fill" style="width:${ratio * 100}%"></div></div></div>`;
+        }).join("");
+  }
+  function openMuscModal() { renderMuscles(); muscModal.hidden = false; }
+  function closeMuscModal() { muscModal.hidden = true; }
+  if (muscBtn) muscBtn.addEventListener("click", openMuscModal);
+  muscModal.querySelectorAll("[data-muscclose]").forEach(el => el.addEventListener("click", closeMuscModal));
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && !muscModal.hidden) closeMuscModal(); });
+
   function recalc() {
     let vol = 0, sets = 0;
     EXERCISES.forEach(ex => ex.sets.forEach(s => {
@@ -770,6 +886,8 @@ form.addEventListener("submit", async (e) => {
     }));
     volEl.textContent = Math.round(vol);
     setsEl.textContent = String(sets);
+    muscEl.textContent = String(muscleLoads().length);
+    if (!muscModal.hidden) renderMuscles();
   }
 
   function setRow(ex, s, i) {
@@ -804,14 +922,14 @@ form.addEventListener("submit", async (e) => {
       head.className = "gym-exhead";
       head.appendChild(makeThumb(ex));
       head.insertAdjacentHTML("beforeend",
-        `<span class="gym-exname">${ex.name}</span><span class="gym-more">⋯</span>`);
+        `<span class="gym-exname">${tx(ex.name)}</span><span class="gym-more">⋯</span>`);
       block.appendChild(head);
 
       const colhead = document.createElement("div");
       colhead.className = "gym-colhead";
       colhead.innerHTML =
-        `<span class="gym-c-num">Serie</span><span class="gym-c-prev">Anterior</span>` +
-        `<span class="gym-c-kg">KG</span><span class="gym-c-reps">Reps</span><span class="gym-c-tick"></span>`;
+        `<span class="gym-c-num">${t("gym.set")}</span><span class="gym-c-prev">${t("gym.previous")}</span>` +
+        `<span class="gym-c-kg">KG</span><span class="gym-c-reps">${t("gym.reps")}</span><span class="gym-c-tick"></span>`;
       block.appendChild(colhead);
 
       ex.sets.forEach((s, i) => block.appendChild(setRow(ex, s, i)));
@@ -819,7 +937,7 @@ form.addEventListener("submit", async (e) => {
       const add = document.createElement("button");
       add.type = "button";
       add.className = "gym-addset";
-      add.innerHTML = `<svg class="ico"><use href="#i-plus"/></svg> Añadir serie`;
+      add.innerHTML = `<svg class="ico"><use href="#i-plus"/></svg> ${t("gym.addSet")}`;
       add.addEventListener("click", () => {
         const last = ex.sets[ex.sets.length - 1];
         const ns = { kg: last ? last.kg : "", reps: last ? last.reps : "", prev: "—", done: false };
