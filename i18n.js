@@ -22,6 +22,22 @@
   // Prefijo de idioma en la URL (/en/, /de/…). "" si estamos en la raíz.
   const PATH_PREFIX = (location.pathname.match(/^\/(en|de|fr|it)(\/|$)/) || [])[1] || "";
   const IS_HOME = location.pathname === "/" || location.pathname === "/index.html";
+
+  // ── Redirección automática por idioma (solo en la home) ───────
+  // Envía al visitante a /xx/ según su preferencia guardada o el idioma
+  // del navegador. Se salta bots para que Google indexe la home española
+  // tal cual, y respeta la elección manual del selector (incluido "es").
+  (function autoRedirect() {
+    if (!IS_HOME) return;
+    if (location.protocol !== "http:" && location.protocol !== "https:") return;
+    if (/bot|crawl|spider|slurp|bingpreview|facebookexternalhit|whatsapp|telegram|embed|preview|lighthouse/i.test(navigator.userAgent || "")) return;
+    let pref = null;
+    try { pref = localStorage.getItem("rhabit_lang"); } catch (e) { /* noop */ }
+    let target = pref && LANGS.includes(pref)
+      ? pref
+      : (navigator.language || "es").slice(0, 2).toLowerCase();
+    if (target !== "es" && LANG_URL[target]) location.replace(LANG_URL[target]);
+  }());
   // Las URLs por idioma (/xx/ y la home española) fijan el idioma por la URL;
   // solo otras páginas sueltas (p. ej. donar.html) usan preferencia/navegador.
   const URL_DRIVEN = !!PATH_PREFIX || IS_HOME;
@@ -528,6 +544,7 @@
       opt.addEventListener("click", () => {
         const next = opt.dataset.lang;
         if (URL_DRIVEN) {
+          try { localStorage.setItem("rhabit_lang", next); } catch (e) { /* noop */ }
           if (next !== LANG) location.href = LANG_URL[next] || "/";
         } else {
           localStorage.setItem("rhabit_lang", next);
