@@ -272,6 +272,11 @@ a{color:inherit;text-decoration:none}
     0 0 60px rgba(255,122,26,.12);
   transition:transform .5s var(--ease),box-shadow .5s var(--ease);
   position:relative;
+  /* Capa de composición estable: evita el artefacto de esquina en el borde/
+     sombra redondeados bajo la rotación 3D (visible sobre todo en Firefox). */
+  -webkit-backface-visibility:hidden;
+  backface-visibility:hidden;
+  will-change:transform;
 }
 .phone::before{
   content:"";position:absolute;top:16px;left:50%;transform:translateX(-50%);
@@ -279,7 +284,7 @@ a{color:inherit;text-decoration:none}
 }
 .phone video,
 .phone__screen{
-  width:100%;height:100%;object-fit:cover;border-radius:30px;background:#000;display:block;
+  width:100%;height:100%;object-fit:cover;border-radius:30px;background:#211b16;display:block;
 }
 .phone--tilt-r{transform:rotateY(-16deg) rotateX(4deg) rotateZ(1deg)}
 .phone--tilt-l{transform:rotateY(16deg) rotateX(4deg) rotateZ(-1deg)}
