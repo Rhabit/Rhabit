@@ -271,6 +271,38 @@
       fr: `C'est <strong>gratuit</strong>. Laisse juste ton e-mail ou un canal de contact et nous te préviendrons le jour du lancement ; les premiers reçoivent des cadeaux exclusifs.`,
       it: `È <strong>gratis</strong>. Lascia solo la tua email o un canale di contatto e ti avviseremo il giorno del lancio; i primi ricevono regali esclusivi.`,
     },
+    "faq.q4": { es: "¿Para qué sirve Rhabit?", en: "What is Rhabit for?", de: "Wofür ist Rhabit gut?", fr: "À quoi sert Rhabit ?", it: "A cosa serve Rhabit?" },
+    "faq.a4": {
+      es: `Rhabit es una <strong>app de calendario, hábitos y disciplina</strong>: reúne tus hábitos diarios, entrenos de gimnasio, sesiones de estudio y metas en un mismo calendario y los convierte en una racha para mantener la constancia.`,
+      en: `Rhabit is a <strong>calendar, habits and discipline app</strong>: it brings your daily habits, gym workouts, study sessions and goals together in one calendar and turns them into a streak to stay consistent.`,
+      de: `Rhabit ist eine <strong>Kalender-, Gewohnheits- und Disziplin-App</strong>: Sie vereint deine täglichen Gewohnheiten, Gym-Workouts, Lernsessions und Ziele in einem Kalender und verwandelt sie in eine Serie für mehr Beständigkeit.`,
+      fr: `Rhabit est une <strong>app de calendrier, d'habitudes et de discipline</strong> : elle réunit tes habitudes quotidiennes, tes entraînements, tes sessions d'étude et tes objectifs dans un seul calendrier et les transforme en une série pour rester régulier.`,
+      it: `Rhabit è un'<strong>app di calendario, abitudini e disciplina</strong>: riunisce le tue abitudini quotidiane, gli allenamenti, le sessioni di studio e gli obiettivi in un unico calendario e li trasforma in una serie per restare costante.`,
+    },
+    "faq.q5": { es: "¿En qué plataformas estará disponible Rhabit?", en: "What platforms will Rhabit be available on?", de: "Auf welchen Plattformen wird Rhabit verfügbar sein?", fr: "Sur quelles plateformes Rhabit sera-t-il disponible ?", it: "Su quali piattaforme sarà disponibile Rhabit?" },
+    "faq.a5": {
+      es: `Rhabit llegará <strong>a iOS (iPhone) y Android</strong> próximamente. Apúntate a la lista de espera para recibir el aviso el día del lanzamiento.`,
+      en: `Rhabit is coming <strong>to iOS (iPhone) and Android</strong> soon. Join the waitlist to get notified on launch day.`,
+      de: `Rhabit kommt bald <strong>für iOS (iPhone) und Android</strong>. Trag dich in die Warteliste ein, um zum Start benachrichtigt zu werden.`,
+      fr: `Rhabit arrive bientôt <strong>sur iOS (iPhone) et Android</strong>. Inscris-toi à la liste d'attente pour être prévenu le jour du lancement.`,
+      it: `Rhabit arriverà presto <strong>su iOS (iPhone) e Android</strong>. Iscriviti alla lista d'attesa per ricevere l'avviso il giorno del lancio.`,
+    },
+    "faq.q6": { es: "¿Rhabit es una app de hábitos o de calendario?", en: "Is Rhabit a habits app or a calendar app?", de: "Ist Rhabit eine Gewohnheits- oder eine Kalender-App?", fr: "Rhabit est-il une app d'habitudes ou de calendrier ?", it: "Rhabit è un'app di abitudini o di calendario?" },
+    "faq.a6": {
+      es: `Es <strong>las dos cosas</strong>. Rhabit combina un calendario visual con un seguimiento de hábitos y rachas, y añade gimnasio, estudio y metas, para que gestiones toda tu disciplina desde una sola app.`,
+      en: `It's <strong>both</strong>. Rhabit combines a visual calendar with habit and streak tracking, and adds gym, study and goals, so you manage all your discipline from a single app.`,
+      de: `<strong>Beides</strong>. Rhabit verbindet einen visuellen Kalender mit Gewohnheits- und Serien-Tracking und ergänzt Gym, Lernen und Ziele – so verwaltest du deine ganze Disziplin in einer App.`,
+      fr: `<strong>Les deux</strong>. Rhabit combine un calendrier visuel avec le suivi des habitudes et des séries, et ajoute salle de sport, étude et objectifs, pour gérer toute ta discipline depuis une seule app.`,
+      it: `<strong>Entrambe</strong>. Rhabit unisce un calendario visivo al monitoraggio di abitudini e serie, e aggiunge palestra, studio e obiettivi, così gestisci tutta la tua disciplina da un'unica app.`,
+    },
+    "faq.q7": { es: "¿Rhabit sirve para entrenar en el gimnasio?", en: "Can I use Rhabit for the gym?", de: "Kann ich Rhabit fürs Gym nutzen?", fr: "Puis-je utiliser Rhabit pour la salle de sport ?", it: "Posso usare Rhabit per la palestra?" },
+    "faq.a7": {
+      es: `Sí. Incluye un módulo de gimnasio con <strong>+600 ejercicios animados en 3D</strong>, registro de series, repeticiones y peso, y un mapa de los músculos trabajados en cada entrenamiento.`,
+      en: `Yes. It includes a gym module with <strong>600+ 3D-animated exercises</strong>, logging of sets, reps and weight, and a map of the muscles worked in each session.`,
+      de: `Ja. Es enthält ein Gym-Modul mit <strong>über 600 in 3D animierten Übungen</strong>, Erfassung von Sätzen, Wiederholungen und Gewicht sowie einer Karte der trainierten Muskeln pro Einheit.`,
+      fr: `Oui. Il inclut un module salle de sport avec <strong>plus de 600 exercices animés en 3D</strong>, l'enregistrement des séries, répétitions et poids, et une carte des muscles travaillés à chaque séance.`,
+      it: `Sì. Include un modulo palestra con <strong>oltre 600 esercizi animati in 3D</strong>, registrazione di serie, ripetizioni e peso, e una mappa dei muscoli allenati in ogni sessione.`,
+    },
 
     "cta.title": {
       es: `Sé de los primeros en <span class="grad">Rhabit</span>`,
