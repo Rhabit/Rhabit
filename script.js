@@ -758,11 +758,12 @@ form.addEventListener("submit", async (e) => {
     btn.type = "button";
     btn.className = "gym-thumbbtn";
     btn.setAttribute("aria-label", t("gym.view") + " " + tx(ex.name));
-    const v = document.createElement("video");
+    // Póster estático (primer fotograma): un <video> en pausa no pinta frame en
+    // móvil (sale negro), así que usamos una imagen.
+    const v = document.createElement("img");
     v.className = "gym-thumb";
-    v.src = ex.video; v.muted = true; v.playsInline = true; v.preload = "metadata";
-    // Congela el primer fotograma para que la miniatura no se reproduzca sola.
-    v.addEventListener("loadeddata", () => { try { v.currentTime = 0.05; } catch (e) {} });
+    v.src = ex.video.replace(".mp4", "-poster.webp");
+    v.alt = ""; v.loading = "lazy"; v.decoding = "async";
     const play = document.createElement("span");
     play.className = "gym-thumb-play";
     play.innerHTML = `<svg class="ico"><use href="#i-play"/></svg>`;
