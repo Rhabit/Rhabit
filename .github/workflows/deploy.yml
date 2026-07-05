@@ -25,6 +25,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Generar páginas por idioma (/en, /de, /fr, /it)
+        run: node build-i18n.mjs
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 

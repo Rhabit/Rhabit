@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://rhabit.app/</loc>
     <lastmod>2026-07-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://rhabit.app/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://rhabit.app/en/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://rhabit.app/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://rhabit.app/fr/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://rhabit.app/it/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://rhabit.app/" />
     <image:image>
       <image:loc>https://rhabit.app/assets/og-image.png</image:loc>
       <image:title>Rhabit — App de calendario, hábitos y disciplina</image:title>
@@ -18,6 +25,54 @@
       <image:loc>https://rhabit.app/assets/icon.png</image:loc>
       <image:title>Icono de la app Rhabit</image:title>
     </image:image>
+  </url>
+  <url>
+    <loc>https://rhabit.app/en/</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://rhabit.app/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://rhabit.app/en/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://rhabit.app/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://rhabit.app/fr/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://rhabit.app/it/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://rhabit.app/" />
+  </url>
+  <url>
+    <loc>https://rhabit.app/de/</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://rhabit.app/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://rhabit.app/en/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://rhabit.app/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://rhabit.app/fr/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://rhabit.app/it/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://rhabit.app/" />
+  </url>
+  <url>
+    <loc>https://rhabit.app/fr/</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://rhabit.app/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://rhabit.app/en/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://rhabit.app/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://rhabit.app/fr/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://rhabit.app/it/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://rhabit.app/" />
+  </url>
+  <url>
+    <loc>https://rhabit.app/it/</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://rhabit.app/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://rhabit.app/en/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://rhabit.app/de/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://rhabit.app/fr/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://rhabit.app/it/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://rhabit.app/" />
   </url>
   <url>
     <loc>https://rhabit.app/donar.html</loc>

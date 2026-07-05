@@ -17,8 +17,18 @@
   }
 
   const LANGS = ["es", "en", "de", "fr", "it"];
+  const LANG_URL = { es: "/", en: "/en/", de: "/de/", fr: "/fr/", it: "/it/" };
+
+  // Prefijo de idioma en la URL (/en/, /de/…). "" si estamos en la raíz.
+  const PATH_PREFIX = (location.pathname.match(/^\/(en|de|fr|it)(\/|$)/) || [])[1] || "";
+  const IS_HOME = location.pathname === "/" || location.pathname === "/index.html";
+  // Las URLs por idioma (/xx/ y la home española) fijan el idioma por la URL;
+  // solo otras páginas sueltas (p. ej. donar.html) usan preferencia/navegador.
+  const URL_DRIVEN = !!PATH_PREFIX || IS_HOME;
 
   function detectLang() {
+    if (PATH_PREFIX && LANGS.includes(PATH_PREFIX)) return PATH_PREFIX;
+    if (IS_HOME) return "es"; // canonical española; el idioma vive en /xx/
     const saved = localStorage.getItem("rhabit_lang");
     if (saved && LANGS.includes(saved)) return saved;
     const nav = (navigator.language || "es").slice(0, 2).toLowerCase();
@@ -516,8 +526,13 @@
     menu.querySelectorAll(".lang__opt").forEach(opt => {
       opt.setAttribute("aria-selected", opt.dataset.lang === LANG ? "true" : "false");
       opt.addEventListener("click", () => {
-        localStorage.setItem("rhabit_lang", opt.dataset.lang);
-        location.reload();
+        const next = opt.dataset.lang;
+        if (URL_DRIVEN) {
+          if (next !== LANG) location.href = LANG_URL[next] || "/";
+        } else {
+          localStorage.setItem("rhabit_lang", next);
+          location.reload();
+        }
       });
     });
 
