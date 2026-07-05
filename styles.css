@@ -278,7 +278,11 @@ a{color:inherit;text-decoration:none}
   width:78px;height:7px;border-radius:99px;background:#000;z-index:3;
 }
 .phone video{
-  width:100%;height:100%;object-fit:cover;border-radius:30px;background:#000;display:block;
+  width:100%;height:100%;object-fit:cover;border-radius:30px;display:block;
+  /* Primer fotograma como fondo (no como poster): Firefox ignora object-fit
+     en el poster y lo deforma; background-size:cover sí lo respeta. Se ve
+     mientras el vídeo descarga y el vídeo lo tapa al reproducirse. */
+  background:#000 url("assets/ex-curl-poster.webp") center/cover no-repeat;
 }
 .phone--tilt-r{transform:rotateY(-16deg) rotateX(4deg) rotateZ(1deg)}
 .phone--tilt-l{transform:rotateY(16deg) rotateX(4deg) rotateZ(-1deg)}
