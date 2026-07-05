@@ -38,6 +38,7 @@ jobs:
             --exclude '_site' \
             --exclude 'collector' \
             --exclude 'hashes.txt' \
+            --exclude 'indexnow.sh' \
             ./ _site/
           ls -la _site
 
