@@ -3,12 +3,12 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://rhabit.app/</loc>
-    <lastmod>2026-07-03</lastmod>
+    <lastmod>2026-07-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
       <image:loc>https://rhabit.app/assets/og-image.png</image:loc>
-      <image:title>Rhabit — Salta hoy. Mañana estarás más cerca.</image:title>
+      <image:title>Rhabit — App de calendario, hábitos y disciplina</image:title>
     </image:image>
     <image:image>
       <image:loc>https://rhabit.app/assets/rabbit.png</image:loc>
@@ -18,5 +18,11 @@
       <image:loc>https://rhabit.app/assets/icon.png</image:loc>
       <image:title>Icono de la app Rhabit</image:title>
     </image:image>
+  </url>
+  <url>
+    <loc>https://rhabit.app/donar.html</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 </urlset>
