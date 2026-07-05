@@ -270,15 +270,21 @@
       <nav class="nav__links">
         <a href="#features" data-i18n="nav.how">Cómo funciona</a>
         <a href="#showcase" data-i18n="nav.app">La app</a>
-        <a href="donar.html" data-i18n="nav.support">Apóyanos</a>
+        <a href="donar.html" class="nav__support" data-i18n="nav.support">Apóyanos</a>
         <a href="#waitlist" class="nav__cta" data-i18n="nav.join">Apúntate</a>
-        <select class="lang-select" id="lang-select" aria-label="Idioma">
-          <option value="es">ES</option>
-          <option value="en">EN</option>
-          <option value="de">DE</option>
-          <option value="fr">FR</option>
-          <option value="it">IT</option>
-        </select>
+        <div class="lang" id="lang">
+          <button type="button" class="lang__btn" id="lang-btn" aria-haspopup="listbox" aria-expanded="false" aria-label="Idioma">
+            <span id="lang-cur">ES</span>
+            <svg class="lang__chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5 12 15l6-5.5"/></svg>
+          </button>
+          <ul class="lang__menu" id="lang-menu" role="listbox" hidden>
+            <li class="lang__opt" role="option" data-lang="es">Español</li>
+            <li class="lang__opt" role="option" data-lang="en">English</li>
+            <li class="lang__opt" role="option" data-lang="de">Deutsch</li>
+            <li class="lang__opt" role="option" data-lang="fr">Français</li>
+            <li class="lang__opt" role="option" data-lang="it">Italiano</li>
+          </ul>
+        </div>
       </nav>
     </div>
   </header>

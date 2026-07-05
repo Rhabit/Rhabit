@@ -467,14 +467,29 @@
   }
 
   function initSelector() {
-    const sel = document.getElementById("lang-select");
-    if (!sel) return;
-    sel.value = LANG;
-    sel.setAttribute("aria-label", t("aria.lang"));
-    sel.addEventListener("change", () => {
-      localStorage.setItem("rhabit_lang", sel.value);
-      location.reload();
+    const wrap = document.getElementById("lang");
+    const btn  = document.getElementById("lang-btn");
+    const menu = document.getElementById("lang-menu");
+    const cur  = document.getElementById("lang-cur");
+    if (!wrap || !btn || !menu || !cur) return;
+
+    const CODES = { es: "ES", en: "EN", de: "DE", fr: "FR", it: "IT" };
+    cur.textContent = CODES[LANG] || "ES";
+    btn.setAttribute("aria-label", t("aria.lang"));
+
+    menu.querySelectorAll(".lang__opt").forEach(opt => {
+      opt.setAttribute("aria-selected", opt.dataset.lang === LANG ? "true" : "false");
+      opt.addEventListener("click", () => {
+        localStorage.setItem("rhabit_lang", opt.dataset.lang);
+        location.reload();
+      });
     });
+
+    const close = () => { menu.hidden = true; wrap.setAttribute("aria-open", "false"); btn.setAttribute("aria-expanded", "false"); };
+    const open  = () => { menu.hidden = false; wrap.setAttribute("aria-open", "true"); btn.setAttribute("aria-expanded", "true"); };
+    btn.addEventListener("click", e => { e.stopPropagation(); menu.hidden ? open() : close(); });
+    document.addEventListener("click", e => { if (!wrap.contains(e.target)) close(); });
+    document.addEventListener("keydown", e => { if (e.key === "Escape") close(); });
   }
 
   window.I18N = { LANG, t, tx };

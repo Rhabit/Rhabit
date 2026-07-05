@@ -64,17 +64,28 @@ a{color:inherit;text-decoration:none}
   background:var(--accent);color:#1a0f04!important;padding:9px 18px;border-radius:999px;font-weight:700;
 }
 .nav__cta:hover{background:var(--gold)}
-.lang-select{
-  appearance:none;-webkit-appearance:none;
+/* Selector de idioma propio (estilo de la web) */
+.lang{position:relative}
+.lang__btn{
+  display:inline-flex;align-items:center;gap:6px;
   background:var(--surface);color:var(--text);border:1px solid var(--border);
-  border-radius:999px;padding:7px 26px 7px 12px;font-family:inherit;font-size:13px;font-weight:700;
-  cursor:pointer;letter-spacing:.03em;transition:border-color .2s;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a89e90' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='M6 9.5 12 15l6-5.5'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;background-position:right 8px center;background-size:12px;
+  border-radius:999px;padding:7px 12px;font-family:inherit;font-size:13px;font-weight:700;
+  letter-spacing:.03em;cursor:pointer;transition:border-color .2s,background .2s;
 }
-.lang-select:hover{border-color:var(--accent-soft)}
-.lang-select option{background:var(--surface);color:var(--text)}
-@media(max-width:640px){.nav__links a:not(.nav__cta){display:none}}
+.lang__btn:hover{border-color:var(--accent-soft)}
+.lang__chev{width:13px;height:13px;fill:none;stroke:var(--dim);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;transition:transform .2s}
+.lang[aria-open="true"] .lang__chev{transform:rotate(180deg)}
+.lang__menu{
+  position:absolute;top:calc(100% + 8px);right:0;z-index:60;min-width:154px;margin:0;padding:6px;list-style:none;
+  background:var(--surface);border:1px solid var(--border);border-radius:14px;
+  box-shadow:0 18px 44px rgba(0,0,0,.55);animation:langpop .18s var(--ease);
+}
+.lang__menu[hidden]{display:none}
+@keyframes langpop{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.lang__opt{padding:9px 12px;border-radius:9px;font-size:14px;color:var(--dim);cursor:pointer;transition:background .15s,color .15s}
+.lang__opt:hover{background:var(--surface-alt);color:var(--text)}
+.lang__opt[aria-selected="true"]{color:var(--accent);font-weight:700}
+@media(max-width:640px){.nav__links a:not(.nav__cta):not(.nav__support){display:none}}
 
 /* ---------- Hero ---------- */
 .hero{max-width:var(--maxw);margin:0 auto;padding:56px 24px 32px;text-align:center}
@@ -920,6 +931,11 @@ a{color:inherit;text-decoration:none}
 .skip-link{position:absolute;left:-9999px;top:0;z-index:200;background:var(--accent);color:#1a0f04;padding:10px 16px;border-radius:0 0 10px 0;font-weight:700}
 .skip-link:focus{left:0}
 a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+/* El contenedor <main> es objetivo del enlace de salto (tabindex -1); su outline
+   por defecto se ve como una línea/caja azul en móvil. Lo quitamos. */
+main:focus,main:focus-visible{outline:none}
+/* Sin destello azul del tap en móvil */
+html{-webkit-tap-highlight-color:transparent}
 @media (prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
 
 /* ── Donaciones ── */
