@@ -90,7 +90,7 @@ function build(lang, m) {
   h = h.replace(/"inLanguage": "es"/g, `"inLanguage": "${lang}"`);
 
   // Rutas de recursos -> absolutas (el archivo vive en /<lang>/).
-  h = h.replace(/(href|src)="assets\//g, '$1="/assets/');
+  h = h.replace(/(href|src|poster)="assets\//g, '$1="/assets/');
   h = h.replace('href="favicon.ico"', 'href="/favicon.ico"');
   h = h.replace('href="site.webmanifest"', 'href="/site.webmanifest"');
   h = h.replace('href="styles.css"', 'href="/styles.css"');
