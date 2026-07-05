@@ -1006,3 +1006,8 @@ html{-webkit-tap-highlight-color:transparent}
 .donate__link{color:inherit;font-weight:inherit;text-decoration:underline;text-decoration-color:rgba(194,184,168,.45);text-underline-offset:2px;transition:color .2s}
 .donate__link:hover{color:var(--accent);text-decoration-color:var(--accent)}
 .donate__img{margin-top:auto;width:100%;max-width:210px;height:auto;align-self:center;padding-top:4px;filter:drop-shadow(0 12px 30px rgba(255,122,26,.18))}
+/* En PC la imagen crece para rellenar el alto sobrante de la tarjeta */
+@media(min-width:721px){
+  .donate__img{margin-top:16px;max-width:none;width:100%;height:auto;
+    flex:1 1 auto;min-height:140px;object-fit:contain;object-position:center bottom;align-self:stretch;padding-top:0}
+}
