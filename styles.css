@@ -662,7 +662,7 @@ a{color:inherit;text-decoration:none}
 .sw-hero .ico{width:50px;height:50px;stroke:var(--c);stroke-width:1.7}
 .sw-hero--vid{background:none;border:0}
 .sw-hero--vid{width:auto;height:auto;margin:-10px 0 1px}
-.sw-hero--vid img{width:180px;height:auto;display:block;pointer-events:none;user-select:none;-webkit-user-drag:none}
+.sw-hero--vid img{width:180px;height:auto;aspect-ratio:300/283;display:block;pointer-events:none;user-select:none;-webkit-user-drag:none}
 .sw-name{font-size:19px;font-weight:800;line-height:1.15}
 .sw-prompt{font-size:12px;color:var(--dim);margin-top:6px}
 /* Pista de deslizamiento (durante la intro) */
