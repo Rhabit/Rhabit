@@ -775,7 +775,7 @@ form.addEventListener("submit", async (e) => {
   // Estado inicial (imita "Anterior" con la sesión previa).
   const EXERCISES = [
     {
-      name: "Curl de bíceps", video: "assets/ex-curl.mp4",
+      name: "Curl de bíceps", video: "assets/ex-curl-fx1.mp4",
       muscles: { principal: "bíceps", secundarios: ["antebrazos"] },
       pr: { peso: "16 kg", rm: "22 kg", vol: "1.9k" },
       sets: [
