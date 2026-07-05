@@ -8,8 +8,12 @@
    ============================================================ */
 (function () {
   // URL limpia: si se cargó como /index.html, quítalo de la barra sin recargar.
-  if (location.pathname.endsWith("/index.html")) {
-    history.replaceState(null, "", location.pathname.slice(0, -"index.html".length) + location.search);
+  // Solo en http(s): en file:// replaceState lanza SecurityError (origen "null").
+  if (location.pathname.endsWith("/index.html") &&
+      (location.protocol === "http:" || location.protocol === "https:")) {
+    try {
+      history.replaceState(null, "", location.pathname.slice(0, -"index.html".length) + location.search);
+    } catch (e) { /* noop */ }
   }
 
   const LANGS = ["es", "en", "de", "fr", "it"];
