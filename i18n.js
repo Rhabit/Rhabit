@@ -29,11 +29,11 @@
   // ── Cadenas estáticas: key -> { es, en, de, fr, it } ──────────
   const DICT = {
     "meta.title": {
-      es: "Rhabit — Hábitos, entrenos y estudio en un calendario | Salta hoy",
-      en: "Rhabit — Habits, workouts and study in one calendar | Jump today",
-      de: "Rhabit — Gewohnheiten, Workouts und Lernen in einem Kalender | Spring heute",
-      fr: "Rhabit — Habitudes, entraînements et études dans un calendrier | Saute aujourd'hui",
-      it: "Rhabit — Abitudini, allenamenti e studio in un calendario | Salta oggi",
+      es: "Rhabit — App de calendario, hábitos y disciplina | Salta hoy",
+      en: "Rhabit — Calendar, habits and discipline app | Jump today",
+      de: "Rhabit — Kalender-, Gewohnheits- und Disziplin-App | Spring heute",
+      fr: "Rhabit — App de calendrier, habitudes et discipline | Saute aujourd'hui",
+      it: "Rhabit — App di calendario, abitudini e disciplina | Salta oggi",
     },
     "meta.titleDonate": {
       es: "Apoya Rhabit — Dona con Ko-fi",
