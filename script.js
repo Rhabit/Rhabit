@@ -34,12 +34,15 @@ const success  = document.getElementById("waitlist-success");
 const consent  = document.getElementById("consent");
 const wrapForm = form;
 
-// Al marcar la casilla, quita el aviso rojo de obligatorio.
+// Al marcar la casilla, quita el rojo y restaura el mensaje original.
 if (consent) consent.addEventListener("change", () => {
   if (consent.checked) {
     const lbl = consent.closest(".waitlist__consent");
     if (lbl) lbl.classList.remove("invalid");
-    if (hint) hint.classList.remove("error");
+    if (hint) {
+      hint.classList.remove("error");
+      if (hint.dataset.def != null) hint.innerHTML = hint.dataset.def;
+    }
   }
 });
 
@@ -77,6 +80,7 @@ form.addEventListener("submit", async (e) => {
 
   // Consentimiento RGPD obligatorio.
   if (consent && !consent.checked) {
+    if (hint.dataset.def == null) hint.dataset.def = hint.innerHTML;
     hint.textContent = t("form.consentReq");
     hint.classList.add("error");
     const lbl = consent.closest(".waitlist__consent");
@@ -86,29 +90,32 @@ form.addEventListener("submit", async (e) => {
   }
   hint.classList.remove("error");
 
-  // Evita duplicados desde el mismo navegador
-  const already = JSON.parse(localStorage.getItem("rhabit_waitlist") || "[]");
-  const hash = await sha256(email);
-  if (already.includes(hash)) {
-    showSuccess();
-    return;
-  }
-
-  const hp = document.getElementById("hp-email");
-  const payload = {
-    email, hash, ts: new Date().toISOString(), src: "landing",
-    website: hp ? hp.value : "", consent: true,
-  };
+  // Estado "procesando": spinner en el botón hasta mostrar el mensaje de listo.
+  const btn = form.querySelector(".waitlist__btn");
+  if (btn) { btn.classList.add("loading"); btn.disabled = true; }
 
   try {
-    await sendLead(payload);
-  } catch (err) {
-    // Aunque falle el envío, no bloqueamos al usuario; queda en local.
-    console.warn("Collector no disponible:", err);
+    const already = JSON.parse(localStorage.getItem("rhabit_waitlist") || "[]");
+    const hash = await sha256(email);
+    if (!already.includes(hash)) {
+      const hp = document.getElementById("hp-email");
+      const payload = {
+        email, hash, ts: new Date().toISOString(), src: "landing",
+        website: hp ? hp.value : "", consent: true,
+      };
+      try {
+        await sendLead(payload);
+      } catch (err) {
+        console.warn("Collector no disponible:", err);
+      }
+      already.push(hash);
+      localStorage.setItem("rhabit_waitlist", JSON.stringify(already));
+    }
+    await new Promise((r) => setTimeout(r, 650)); // que se vea el spinner
+  } finally {
+    if (btn) { btn.classList.remove("loading"); btn.disabled = false; }
   }
 
-  already.push(hash);
-  localStorage.setItem("rhabit_waitlist", JSON.stringify(already));
   showSuccess();
 });
 
@@ -128,12 +135,15 @@ form.addEventListener("submit", async (e) => {
 
   const altConsentEl = document.getElementById("altch-consent");
   const altHint = altForm.querySelector(".waitlist__hint");
-  // Al marcar la casilla, quita el aviso rojo de obligatorio.
+  // Al marcar la casilla, quita el rojo y restaura el mensaje original.
   if (altConsentEl) altConsentEl.addEventListener("change", () => {
     if (altConsentEl.checked) {
       const lbl = altConsentEl.closest(".waitlist__consent");
       if (lbl) lbl.classList.remove("invalid");
-      if (altHint) altHint.classList.remove("error");
+      if (altHint) {
+        altHint.classList.remove("error");
+        if (altHint.dataset.def != null) altHint.innerHTML = altHint.dataset.def;
+      }
     }
   });
 
@@ -187,29 +197,41 @@ form.addEventListener("submit", async (e) => {
     if (altConsentEl && !altConsentEl.checked) {
       const lbl = altConsentEl.closest(".waitlist__consent");
       if (lbl) lbl.classList.add("invalid");
-      if (altHint) { altHint.textContent = t("form.consentReq"); altHint.classList.add("error"); }
+      if (altHint) {
+        if (altHint.dataset.def == null) altHint.dataset.def = altHint.innerHTML;
+        altHint.textContent = t("form.consentReq");
+        altHint.classList.add("error");
+      }
       altConsentEl.focus();
       return;
     }
 
-    const raw = current + ":" + handle.toLowerCase();
-    const already = JSON.parse(localStorage.getItem("rhabit_waitlist") || "[]");
-    const hash = await sha256(raw);
-    if (already.includes(hash)) { showSuccess(); return; }
+    const btn = altForm.querySelector(".waitlist__btn");
+    if (btn) { btn.classList.add("loading"); btn.disabled = true; }
 
-    const hpAlt = document.getElementById("hp-alt");
-    const payload = {
-      channel: current, handle, hash, ts: new Date().toISOString(), src: "landing",
-      website: hpAlt ? hpAlt.value : "", consent: true,
-    };
     try {
-      await sendLead(payload);
-    } catch (err) {
-      console.warn("Collector no disponible:", err);
+      const raw = current + ":" + handle.toLowerCase();
+      const already = JSON.parse(localStorage.getItem("rhabit_waitlist") || "[]");
+      const hash = await sha256(raw);
+      if (!already.includes(hash)) {
+        const hpAlt = document.getElementById("hp-alt");
+        const payload = {
+          channel: current, handle, hash, ts: new Date().toISOString(), src: "landing",
+          website: hpAlt ? hpAlt.value : "", consent: true,
+        };
+        try {
+          await sendLead(payload);
+        } catch (err) {
+          console.warn("Collector no disponible:", err);
+        }
+        already.push(hash);
+        localStorage.setItem("rhabit_waitlist", JSON.stringify(already));
+      }
+      await new Promise((r) => setTimeout(r, 650)); // que se vea el spinner
+    } finally {
+      if (btn) { btn.classList.remove("loading"); btn.disabled = false; }
     }
 
-    already.push(hash);
-    localStorage.setItem("rhabit_waitlist", JSON.stringify(already));
     showSuccess();
   });
 })();
