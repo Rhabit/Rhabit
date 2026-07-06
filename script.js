@@ -31,7 +31,17 @@ const form     = document.getElementById("waitlist-form");
 const input    = document.getElementById("email");
 const hint     = document.getElementById("form-hint");
 const success  = document.getElementById("waitlist-success");
+const consent  = document.getElementById("consent");
 const wrapForm = form;
+
+// Al marcar la casilla, quita el aviso rojo de obligatorio.
+if (consent) consent.addEventListener("change", () => {
+  if (consent.checked) {
+    const lbl = consent.closest(".waitlist__consent");
+    if (lbl) lbl.classList.remove("invalid");
+    if (hint) hint.classList.remove("error");
+  }
+});
 
 /* --- Hash SHA-256 en hex (para el registro público) --- */
 async function sha256(text) {
@@ -66,12 +76,15 @@ form.addEventListener("submit", async (e) => {
   input.classList.remove("invalid");
 
   // Consentimiento RGPD obligatorio.
-  const consent = document.getElementById("consent");
   if (consent && !consent.checked) {
     hint.textContent = t("form.consentReq");
+    hint.classList.add("error");
+    const lbl = consent.closest(".waitlist__consent");
+    if (lbl) lbl.classList.add("invalid");
     consent.focus();
     return;
   }
+  hint.classList.remove("error");
 
   // Evita duplicados desde el mismo navegador
   const already = JSON.parse(localStorage.getItem("rhabit_waitlist") || "[]");
@@ -112,6 +125,17 @@ form.addEventListener("submit", async (e) => {
   const altName  = document.getElementById("altch-name");
   const altUse   = altBadge && altBadge.querySelector("use");
   if (!chips || !altForm) return;
+
+  const altConsentEl = document.getElementById("altch-consent");
+  const altHint = altForm.querySelector(".waitlist__hint");
+  // Al marcar la casilla, quita el aviso rojo de obligatorio.
+  if (altConsentEl) altConsentEl.addEventListener("change", () => {
+    if (altConsentEl.checked) {
+      const lbl = altConsentEl.closest(".waitlist__consent");
+      if (lbl) lbl.classList.remove("invalid");
+      if (altHint) altHint.classList.remove("error");
+    }
+  });
 
   const CHANNELS = {
     whatsapp:  { name: "WhatsApp",  icon: "b-whatsapp",  color: "#25d366", ph: "Tu número, ej. +34 600 00 00 00" },
@@ -160,10 +184,11 @@ form.addEventListener("submit", async (e) => {
     altInput.classList.remove("invalid");
 
     // Consentimiento RGPD obligatorio.
-    const altConsent = document.getElementById("altch-consent");
-    if (altConsent && !altConsent.checked) {
-      altConsent.focus();
-      altConsent.parentElement && altConsent.parentElement.classList.add("invalid");
+    if (altConsentEl && !altConsentEl.checked) {
+      const lbl = altConsentEl.closest(".waitlist__consent");
+      if (lbl) lbl.classList.add("invalid");
+      if (altHint) { altHint.textContent = t("form.consentReq"); altHint.classList.add("error"); }
+      altConsentEl.focus();
       return;
     }
 
