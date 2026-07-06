@@ -1133,19 +1133,3 @@ if (storeCards.length) {
     io.observe(media);
   }
 })();
-
-// Repinta los mockups de móvil al cargar para que el borde/sombra redondeados
-// no salgan con el artefacto de esquina de la capa 3D (que si no, solo se
-// corrige al hacer scroll hasta ellos). Un cambio ínfimo de opacidad fuerza
-// el rerasterizado de cada capa, invisible para el usuario.
-(function repaintPhones() {
-  function fix() {
-    document.querySelectorAll(".phone").forEach((el) => {
-      el.style.opacity = "0.99";
-      void el.offsetWidth;
-      requestAnimationFrame(() => { el.style.opacity = ""; });
-    });
-  }
-  if (document.readyState === "complete") fix();
-  else window.addEventListener("load", fix);
-})();
