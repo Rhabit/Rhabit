@@ -1,4 +1,0 @@
-# Rhabit — hashes SHA-256 de los correos de la lista de espera.
-# Formato: <hash_sha256>	<fecha_iso>
-# Este archivo es seguro para repo pública: NO contiene correos en claro.
-# Los correos reales (para enviar el aviso) se guardan en collector/data/emails.txt (privado).

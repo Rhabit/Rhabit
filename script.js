@@ -1,21 +1,17 @@
 /* ============================================================
-   Rhabit — landing / captación de correos
+   Rhabit — landing / captación de leads
    ------------------------------------------------------------
-   El sistema de envío masivo se conectará MÁS ADELANTE con una
-   herramienta open source (p. ej. Listmonk). Aquí solo captamos.
-
    Funcionamiento:
-   - Se valida el correo en el navegador.
-   - Se calcula su hash SHA-256 (para el .txt público de la repo,
-     que así no expone correos en claro).
-   - Se envía al "collector" (backend que guardará el correo real
-     en privado para poder enviar el aviso). Mientras no exista,
-     la web funciona igual y muestra el mensaje de éxito.
+   - Se valida el correo (o usuario de red) en el navegador y se
+     exige el consentimiento RGPD (casilla del formulario).
+   - Se envía al collector: un Google Apps Script que guarda la
+     fila de forma privada en una Hoja de Google (con honeypot,
+     validación y dedup en el servidor).
+   - Se guarda un hash SHA-256 en localStorage solo para no repetir
+     el envío desde el mismo navegador.
    ============================================================ */
 
-// URL del backend que recogerá los correos. Déjalo vacío hasta
-// que despliegues el collector (ver carpeta /collector). Cuando
-// esté listo, pon aquí su URL, p. ej. "https://api.tudominio.com/subscribe".
+// Endpoint del Apps Script (/exec) que recoge los leads en la Hoja de Google.
 const COLLECTOR_URL = "https://script.google.com/macros/s/AKfycbz4haRG1hXFIWml0DF_e2WL_r_1vCjNp_jbF30BROBy6p6dPUbifSukmybnQOw3WFiAPQ/exec";
 
 // Envía el lead al collector (Google Apps Script). Se usa text/plain + no-cors

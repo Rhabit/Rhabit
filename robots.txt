@@ -3,10 +3,6 @@
 User-agent: *
 Allow: /
 
-# Recursos internos que no aportan valor de indexación
-Disallow: /collector/
-Disallow: /hashes.txt
-
 # Rastreadores de IA (búsqueda generativa) — permitidos explícitamente
 User-agent: GPTBot
 Allow: /

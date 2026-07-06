@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
-  <!-- Seguridad (CSP). Si despliegas el collector en otro dominio, añádelo a connect-src.
+  <!-- Seguridad (CSP). connect-src permite el endpoint de Apps Script (captación de leads).
        frame-ancestors solo surte efecto como cabecera HTTP (p. ej. vía Cloudflare); en <meta> se ignora. -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; manifest-src 'self'; worker-src 'none'; child-src 'none'; frame-src 'none'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests" />
 
