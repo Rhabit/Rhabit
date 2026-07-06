@@ -356,6 +356,20 @@
     },
 
     "form.invalid": { es: "Hmm, ese correo no parece válido. Revísalo.", en: "Hmm, that email doesn't look valid. Check it.", de: "Hmm, diese E-Mail sieht ungültig aus. Bitte prüfen.", fr: "Hmm, cet e-mail ne semble pas valide. Vérifie-le.", it: "Hmm, questa email non sembra valida. Controllala." },
+    "form.consent": {
+      es: "Acepto la <a href=\"/privacidad.html\">política de privacidad</a> y recibir el aviso de lanzamiento.",
+      en: "I accept the <a href=\"/privacidad.html\">privacy policy</a> and to receive the launch notice.",
+      de: "Ich akzeptiere die <a href=\"/privacidad.html\">Datenschutzerklärung</a> und den Erhalt der Start-Benachrichtigung.",
+      fr: "J'accepte la <a href=\"/privacidad.html\">politique de confidentialité</a> et de recevoir l'avis de lancement.",
+      it: "Accetto l'<a href=\"/privacidad.html\">informativa sulla privacy</a> e di ricevere l'avviso di lancio.",
+    },
+    "form.consentReq": {
+      es: "Debes aceptar la política de privacidad para continuar.",
+      en: "You must accept the privacy policy to continue.",
+      de: "Du musst die Datenschutzerklärung akzeptieren, um fortzufahren.",
+      fr: "Tu dois accepter la politique de confidentialité pour continuer.",
+      it: "Devi accettare l'informativa sulla privacy per continuare.",
+    },
 
     "nav.support": { es: "Apóyanos", en: "Support us", de: "Unterstützen", fr: "Soutenir", it: "Sostienici" },
     "donate.eyebrow": { es: "Apoya el proyecto", en: "Support the project", de: "Unterstütze das Projekt", fr: "Soutiens le projet", it: "Sostieni il progetto" },

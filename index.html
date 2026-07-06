@@ -6,7 +6,7 @@
 
   <!-- Seguridad (CSP). Si despliegas el collector en otro dominio, añádelo a connect-src.
        frame-ancestors solo surte efecto como cabecera HTTP (p. ej. vía Cloudflare); en <meta> se ignora. -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self'; manifest-src 'self'; worker-src 'none'; child-src 'none'; frame-src 'none'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; manifest-src 'self'; worker-src 'none'; child-src 'none'; frame-src 'none'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests" />
 
   <!-- Título e indexación -->
   <title>Rhabit — App de calendario, hábitos y disciplina | Salta hoy</title>
@@ -368,6 +368,11 @@
                 Avísame al salir
               </button>
             </div>
+            <input type="text" id="hp-email" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <label class="waitlist__consent">
+              <input type="checkbox" id="consent" required />
+              <span data-i18n-html="form.consent">Acepto la <a href="/privacidad.html">política de privacidad</a> y recibir el aviso de lanzamiento.</span>
+            </label>
             <p class="waitlist__hint" id="form-hint">
               <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-gift"/></svg> <span data-i18n-html="hero.hint">Los que se apunten ahora reciben <strong>regalos exclusivos</strong> el día del lanzamiento.</span>
             </p>
@@ -389,6 +394,11 @@
                 <input type="text" id="altch-input" class="waitlist__input" autocomplete="off" aria-label="Tu usuario o número" />
                 <button type="submit" class="waitlist__btn" data-i18n="altch.notify">Avísame</button>
               </div>
+              <input type="text" id="hp-alt" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+              <label class="waitlist__consent">
+                <input type="checkbox" id="altch-consent" required />
+                <span data-i18n-html="form.consent">Acepto la <a href="/privacidad.html">política de privacidad</a> y recibir el aviso de lanzamiento.</span>
+              </label>
               <p class="waitlist__hint">
                 <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> <span data-i18n-html="altch.hint">Te avisaremos por <strong id="altch-name">WhatsApp</strong> el día del lanzamiento.</span>
               </p>

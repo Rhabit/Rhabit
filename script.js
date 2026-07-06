@@ -16,7 +16,20 @@
 // URL del backend que recogerá los correos. Déjalo vacío hasta
 // que despliegues el collector (ver carpeta /collector). Cuando
 // esté listo, pon aquí su URL, p. ej. "https://api.tudominio.com/subscribe".
-const COLLECTOR_URL = "";
+const COLLECTOR_URL = "https://script.google.com/macros/s/AKfycbz4haRG1hXFIWml0DF_e2WL_r_1vCjNp_jbF30BROBy6p6dPUbifSukmybnQOw3WFiAPQ/exec";
+
+// Envía el lead al collector (Google Apps Script). Se usa text/plain + no-cors
+// para evitar el preflight CORS que Apps Script no soporta; la respuesta es
+// opaca (no se lee), pero el doPost se ejecuta y guarda la fila.
+async function sendLead(payload) {
+  if (!COLLECTOR_URL) return;
+  await fetch(COLLECTOR_URL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
+    body: JSON.stringify(payload),
+  });
+}
 
 const form     = document.getElementById("waitlist-form");
 const input    = document.getElementById("email");
@@ -56,6 +69,14 @@ form.addEventListener("submit", async (e) => {
   }
   input.classList.remove("invalid");
 
+  // Consentimiento RGPD obligatorio.
+  const consent = document.getElementById("consent");
+  if (consent && !consent.checked) {
+    hint.textContent = t("form.consentReq");
+    consent.focus();
+    return;
+  }
+
   // Evita duplicados desde el mismo navegador
   const already = JSON.parse(localStorage.getItem("rhabit_waitlist") || "[]");
   const hash = await sha256(email);
@@ -64,20 +85,17 @@ form.addEventListener("submit", async (e) => {
     return;
   }
 
-  const payload = { email, hash, ts: new Date().toISOString(), src: "landing" };
+  const hp = document.getElementById("hp-email");
+  const payload = {
+    email, hash, ts: new Date().toISOString(), src: "landing",
+    website: hp ? hp.value : "", consent: true,
+  };
 
-  // Envía al collector si está configurado; si no, guarda en local.
   try {
-    if (COLLECTOR_URL) {
-      await fetch(COLLECTOR_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-    }
+    await sendLead(payload);
   } catch (err) {
     // Aunque falle el envío, no bloqueamos al usuario; queda en local.
-    console.warn("Collector no disponible aún:", err);
+    console.warn("Collector no disponible:", err);
   }
 
   already.push(hash);
@@ -145,22 +163,28 @@ form.addEventListener("submit", async (e) => {
     }
     altInput.classList.remove("invalid");
 
+    // Consentimiento RGPD obligatorio.
+    const altConsent = document.getElementById("altch-consent");
+    if (altConsent && !altConsent.checked) {
+      altConsent.focus();
+      altConsent.parentElement && altConsent.parentElement.classList.add("invalid");
+      return;
+    }
+
     const raw = current + ":" + handle.toLowerCase();
     const already = JSON.parse(localStorage.getItem("rhabit_waitlist") || "[]");
     const hash = await sha256(raw);
     if (already.includes(hash)) { showSuccess(); return; }
 
-    const payload = { channel: current, handle, hash, ts: new Date().toISOString(), src: "landing" };
+    const hpAlt = document.getElementById("hp-alt");
+    const payload = {
+      channel: current, handle, hash, ts: new Date().toISOString(), src: "landing",
+      website: hpAlt ? hpAlt.value : "", consent: true,
+    };
     try {
-      if (COLLECTOR_URL) {
-        await fetch(COLLECTOR_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
-      }
+      await sendLead(payload);
     } catch (err) {
-      console.warn("Collector no disponible aún:", err);
+      console.warn("Collector no disponible:", err);
     }
 
     already.push(hash);
