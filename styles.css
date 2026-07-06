@@ -170,10 +170,17 @@ a{color:inherit;text-decoration:none}
 .waitlist__hint.error{color:#ff6b6b}
 .waitlist__hint.error strong{color:#ff6b6b}
 .waitlist__input.invalid{color:#ff9e7a}
-/* Spinner de "procesando" en el botón de envío */
-.waitlist__btn.loading{position:relative;color:transparent!important;pointer-events:none}
-.waitlist__btn.loading::after{content:"";position:absolute;top:50%;left:50%;width:18px;height:18px;margin:-9px 0 0 -9px;border:2px solid rgba(255,255,255,.45);border-top-color:#fff;border-radius:50%;animation:btnspin .6s linear infinite}
-@keyframes btnspin{to{transform:rotate(360deg)}}
+/* Spinner de "procesando" en el botón de envío.
+   Va en ::before (el ::after ya lo usa el barrido de brillo, que se oculta). */
+.waitlist__btn.loading{color:transparent!important;pointer-events:none}
+.waitlist__btn.loading::after{display:none}
+.waitlist__btn.loading::before{
+  content:"";position:absolute;top:50%;left:50%;width:18px;height:18px;
+  margin:-9px 0 0 -9px;box-sizing:border-box;background:none;
+  border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;
+  transform:rotate(0);animation:btnspin .6s linear infinite;
+}
+@keyframes btnspin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 
 /* --- Vías alternativas al correo --- */
 .altch{margin-top:18px}
