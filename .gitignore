@@ -5,9 +5,3 @@ __pycache__/
 *.pyc
 .venv/
 venv/
-
-# Páginas por idioma generadas por build-i18n.mjs (artefacto de build)
-/en/
-/de/
-/fr/
-/it/
