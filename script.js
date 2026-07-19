@@ -502,11 +502,11 @@ form.addEventListener("submit", async (e) => {
   if (!deck) return;
 
   const HABITS = [
-    { name: "Emprendimiento", prompt: "¿Ya lo completaste?",  c: "#ff7a1a", i: "rocket", vid: "work.webp" },
-    { name: "Skin care",      prompt: "¿Cómo fue hoy?",       c: "#f472b6", i: "moon", vid: "skin.webp" },
-    { name: "Meditar",        prompt: "¿Lo sacaste adelante?",c: "#9b8cff", i: "wind", vid: "meditar.webp" },
-    { name: "Beber agua",     prompt: "¿Lo hiciste hoy?",     c: "#3fb6ff", i: "droplet", vid: "agua.webp" },
-    { name: "Leer",           prompt: "¿Lo has cumplido hoy?",c: "#f5b14a", i: "book", vid: "leer.webp" },
+    { name: "Emprendimiento", prompt: "¿Ya lo completaste?",  c: "#ff7a1a", i: "rocket", vid: "/work.webp" },
+    { name: "Skin care",      prompt: "¿Cómo fue hoy?",       c: "#f472b6", i: "moon", vid: "/skin.webp" },
+    { name: "Meditar",        prompt: "¿Lo sacaste adelante?",c: "#9b8cff", i: "wind", vid: "/meditar.webp" },
+    { name: "Beber agua",     prompt: "¿Lo hiciste hoy?",     c: "#3fb6ff", i: "droplet", vid: "/agua.webp" },
+    { name: "Leer",           prompt: "¿Lo has cumplido hoy?",c: "#f5b14a", i: "book", vid: "/leer.webp" },
   ];
   // Reproducción por hábito: cada uno estrena UNA URL propia (blob) que luego se
   // REUTILIZA siempre. Al compartir la misma URL, el navegador mantiene un único
