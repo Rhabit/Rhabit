@@ -854,7 +854,7 @@ form.addEventListener("submit", async (e) => {
   // Estado inicial (imita "Anterior" con la sesión previa).
   const EXERCISES = [
     {
-      name: "Curl de bíceps", video: "assets/ex-curl-fx1.mp4",
+      name: "Curl de bíceps", video: "/assets/ex-curl-fx1.mp4",
       muscles: { principal: "bíceps", secundarios: ["antebrazos"] },
       pr: { peso: "16 kg", rm: "22 kg", vol: "1.9k" },
       sets: [
@@ -864,7 +864,7 @@ form.addEventListener("submit", async (e) => {
       ],
     },
     {
-      name: "Press de banca", video: "assets/ex-bench.mp4",
+      name: "Press de banca", video: "/assets/ex-bench.mp4",
       muscles: { principal: "pecho", secundarios: ["tríceps", "hombros"] },
       pr: { peso: "70 kg", rm: "88 kg", vol: "4.2k" },
       sets: [
@@ -874,7 +874,7 @@ form.addEventListener("submit", async (e) => {
       ],
     },
     {
-      name: "Remo con polea", video: "assets/ex-row.mp4",
+      name: "Remo con polea", video: "/assets/ex-row.mp4",
       muscles: { principal: "espalda alta", secundarios: ["bíceps"] },
       pr: { peso: "60 kg", rm: "75 kg", vol: "3.5k" },
       sets: [
@@ -883,7 +883,7 @@ form.addEventListener("submit", async (e) => {
       ],
     },
     {
-      name: "Elevaciones laterales", video: "assets/ex-lateral.mp4",
+      name: "Elevaciones laterales", video: "/assets/ex-lateral.mp4",
       muscles: { principal: "hombros", secundarios: ["trapecio"] },
       pr: { peso: "14 kg", rm: "18 kg", vol: "1.2k" },
       sets: [
@@ -937,10 +937,10 @@ form.addEventListener("submit", async (e) => {
     const layers = list.flatMap(m => {
       const lvl = muscleLevel(m.value);
       const bases = MUSCLE_LAYERS[m.muscle];
-      return (lvl < 1 || !bases) ? [] : bases.map(b => `assets/musculos/${b}-nivel${lvl}.png`);
+      return (lvl < 1 || !bases) ? [] : bases.map(b => `/assets/musculos/${b}-nivel${lvl}.png`);
     });
     bodymap.innerHTML =
-      `<img src="assets/musculos/cuerpo.png" alt="" />` +
+      `<img src="/assets/musculos/cuerpo.png" alt="" />` +
       layers.map(src => `<img src="${src}" alt="" />`).join("");
     musclist.innerHTML = list.length === 0
       ? `<div class="muscempty">${t("gym.muscleEmpty")}</div>`
