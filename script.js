@@ -11,6 +11,18 @@
      el envío desde el mismo navegador.
    ============================================================ */
 
+/* Pantalla de carga: se oculta cuando la página está lista.
+   Va aquí (no inline) porque la CSP usa script-src 'self' y bloquea scripts inline. */
+(function hideSiteLoader() {
+  var l = document.getElementById("site-loader");
+  if (!l) return;
+  var hide = function () { l.classList.add("hidden"); };
+  var ready = function () { requestAnimationFrame(function () { setTimeout(hide, 150); }); };
+  if (document.readyState === "complete") ready();
+  else window.addEventListener("load", ready);
+  setTimeout(hide, 12000); // seguridad: nunca dejar la carga atascada
+})();
+
 // Endpoint del Apps Script (/exec) que recoge los leads en la Hoja de Google.
 const COLLECTOR_URL = "https://script.google.com/macros/s/AKfycbz4haRG1hXFIWml0DF_e2WL_r_1vCjNp_jbF30BROBy6p6dPUbifSukmybnQOw3WFiAPQ/exec";
 
