@@ -260,6 +260,19 @@
 </head>
 <body>
 
+  <!-- Pantalla de carga: cubre la página hasta que todo está cargado -->
+  <div id="site-loader" role="status" aria-label="Cargando"><div class="sl-spin"></div></div>
+  <script>
+    (function () {
+      var l = document.getElementById("site-loader"); if (!l) return;
+      var hide = function () { l.classList.add("hidden"); };
+      var ready = function () { requestAnimationFrame(function () { setTimeout(hide, 200); }); };
+      if (document.readyState === "complete") ready();
+      else window.addEventListener("load", ready);
+      setTimeout(hide, 12000); // seguridad: nunca dejar la carga atascada
+    })();
+  </script>
+
   <a class="skip-link" href="#top" data-i18n="skip">Saltar al contenido</a>
 
   <!-- Sprite de iconos (line-style, como la app) -->

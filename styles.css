@@ -1035,3 +1035,12 @@ html{-webkit-tap-highlight-color:transparent}
   .donate__img{margin-top:16px;max-width:none;width:100%;height:auto;
     flex:1 1 auto;min-height:140px;object-fit:contain;object-position:center bottom;align-self:stretch;padding-top:0}
 }
+
+/* ---------- Pantalla de carga (se oculta cuando la página está cargada) ---------- */
+#site-loader{position:fixed;inset:0;z-index:99999;background:#fff;display:grid;place-items:center;
+  transition:opacity .45s ease,visibility .45s ease}
+#site-loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+#site-loader .sl-spin{width:56px;height:56px;border-radius:50%;
+  border:5px solid rgba(20,15,11,.12);border-top-color:var(--accent);animation:slspin .8s linear infinite}
+@keyframes slspin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){#site-loader .sl-spin{animation-duration:1.6s}}
