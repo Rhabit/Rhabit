@@ -219,52 +219,52 @@ a{color:inherit;text-decoration:none}
   margin-top:24px;font-size:13.5px;color:#8a8072;
 }
 
-/* ---------- Oferta ebook (estilo tienda) ---------- */
+/* ---------- Oferta ebook (minimal + libro flotante) ---------- */
 .ebook{
-  width:100%;max-width:560px;margin:30px auto 0;
-  display:flex;gap:22px;align-items:center;text-align:left;
-  background:linear-gradient(180deg,#ffffff,#f4f1ec);
-  border:1px solid var(--border);border-radius:18px;
-  padding:20px 22px;box-shadow:0 26px 60px rgba(0,0,0,.4);
+  width:100%;max-width:600px;margin:34px auto 0;
+  display:flex;gap:30px;align-items:center;justify-content:center;text-align:left;
 }
-.ebook__media{flex:0 0 auto;display:grid;place-items:center}
+.ebook__media{flex:0 0 auto;position:relative;padding:14px}
+/* Glow cálido detrás del libro */
+.ebook__media::before{
+  content:"";position:absolute;inset:0;z-index:0;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(255,122,26,.38),rgba(245,177,74,.12) 55%,transparent 72%);
+  filter:blur(6px);animation:ebookGlow 4.5s ease-in-out infinite;
+}
 .ebook__cover{
-  width:130px;height:auto;border-radius:4px;
-  box-shadow:0 14px 28px rgba(0,0,0,.28);transform:rotate(-2deg);
+  position:relative;z-index:1;width:220px;height:auto;
+  filter:drop-shadow(0 26px 34px rgba(0,0,0,.55));
+  animation:ebookFloat 5s ease-in-out infinite;transform-origin:center;
 }
-.ebook__info{flex:1 1 auto;min-width:0;color:#1a140d}
-.ebook__tag{
-  display:inline-block;font-size:11.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;
-  color:#1a0f04;background:linear-gradient(100deg,var(--accent),var(--gold));
-  padding:4px 10px;border-radius:999px;
+.ebook__info{flex:0 1 300px;min-width:0}
+.ebook__title{font-size:24px;line-height:1.18;font-weight:800;margin-bottom:16px}
+.ebook__perks{list-style:none;display:flex;flex-direction:column;gap:12px}
+.ebook__perks li{
+  display:flex;align-items:center;gap:12px;font-size:15.5px;font-weight:600;color:var(--text);
 }
-.ebook__title{font-size:20px;line-height:1.2;margin:10px 0 2px;color:#141414;font-weight:800}
-.ebook__sub{font-size:13.5px;color:#5c5348;margin:0 0 8px}
-.ebook__rating{display:flex;align-items:center;gap:8px;font-size:12.5px;color:#5c5348;margin-bottom:10px}
-.ebook__stars{color:#f5a623;letter-spacing:1px;font-size:14px}
-.ebook__price{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:10px}
-.ebook__off{
-  background:#cc0c39;color:#fff;font-weight:800;font-size:13px;
-  padding:2px 8px;border-radius:5px;
+.ebook__ic{
+  flex:0 0 auto;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:#1a0f04;
+  background:linear-gradient(100deg,var(--accent),var(--gold));box-shadow:0 6px 16px rgba(255,122,26,.32);
 }
-.ebook__now{color:#0f7b0f;font-weight:900;font-size:24px;line-height:1}
-.ebook__was{font-size:12.5px;color:#7a7166}
-.ebook__was s{color:#9a9084}
-.ebook__deal{font-size:13.5px;line-height:1.45;color:#4a4238;margin-bottom:14px}
-.ebook__deal strong{color:#141414}
-.ebook__cta{
-  display:inline-block;background:linear-gradient(180deg,#ffd35c,#f7a30a);
-  color:#1a0f04;font-weight:800;font-size:14.5px;
-  padding:10px 22px;border-radius:999px;border:1px solid #e08c00;
-  box-shadow:0 8px 18px rgba(247,163,10,.35);transition:filter .15s var(--ease),transform .1s var(--ease);
+.ebook__ic .ico{width:18px;height:18px;stroke-width:2.2}
+@keyframes ebookFloat{
+  0%,100%{transform:translateY(0) rotate(-2.5deg)}
+  50%{transform:translateY(-14px) rotate(1.5deg)}
 }
-.ebook__cta:hover{filter:brightness(1.05)}
-.ebook__cta:active{transform:scale(.97)}
-@media(max-width:520px){
-  .ebook{flex-direction:column;text-align:center;gap:16px;padding:22px 18px}
-  .ebook__info{text-align:center}
-  .ebook__rating,.ebook__price{justify-content:center}
-  .ebook__cover{width:150px}
+@keyframes ebookGlow{
+  0%,100%{opacity:.7;transform:scale(.97)}
+  50%{opacity:1;transform:scale(1.05)}
+}
+@media(max-width:560px){
+  .ebook{flex-direction:column;gap:14px;text-align:center;margin-top:26px}
+  .ebook__cover{width:190px}
+  .ebook__info{flex:1 1 auto}
+  .ebook__perks li{justify-content:center;text-align:left}
+  .ebook__title{font-size:21px;margin-bottom:14px}
+}
+@media(prefers-reduced-motion:reduce){
+  .ebook__cover{animation:none;transform:rotate(-2deg)}
+  .ebook__media::before{animation:none}
 }
 
 /* ---------- Strip ---------- */
