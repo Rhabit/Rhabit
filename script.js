@@ -70,12 +70,31 @@ function isValidEmail(v) {
 }
 
 const altch = document.getElementById("altch");
+const EBOOK_URL = "/assets/ebook.pdf";
 
-function showSuccess() {
+// Lanza la descarga del ebook (mismo origen) sin salir de la página.
+function downloadEbook() {
+  const a = document.createElement("a");
+  a.href = EBOOK_URL;
+  a.download = "Deja de empezar de nuevo.pdf";
+  a.rel = "noopener";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+}
+
+// download=true (registro por redes): descarga el ebook al instante y muestra
+// el botón por si el navegador bloquea la descarga automática.
+function showSuccess(download) {
   wrapForm.hidden = true;
   if (altch) altch.hidden = true;
+  const txt = document.getElementById("success-text");
+  const dl  = document.getElementById("ebook-download");
+  if (txt) txt.innerHTML = t(download ? "success.textDl" : "success.text");
+  if (dl)  dl.hidden = !download;
   success.hidden  = false;
   success.scrollIntoView({ behavior: "smooth", block: "center" });
+  if (download) downloadEbook();
 }
 
 form.addEventListener("submit", async (e) => {
@@ -244,7 +263,7 @@ form.addEventListener("submit", async (e) => {
       if (btn) { btn.classList.remove("loading"); btn.disabled = false; }
     }
 
-    showSuccess();
+    showSuccess(true);
   });
 })();
 

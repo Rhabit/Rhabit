@@ -108,6 +108,7 @@
     },
     "ebook.perk1": { es: "Ebook «Deja de empezar de nuevo» gratis", en: "Free ebook «Deja de empezar de nuevo»", de: "Gratis-E-Book «Deja de empezar de nuevo»", fr: "Ebook gratuit «Deja de empezar de nuevo»", it: "Ebook gratis «Deja de empezar de nuevo»" },
     "ebook.perk2": { es: "Aviso del lanzamiento de la app", en: "App launch notification", de: "Benachrichtigung zum App-Start", fr: "Avis du lancement de l'app", it: "Avviso del lancio dell'app" },
+    "ebook.download": { es: "Descargar el ebook", en: "Download the ebook", de: "E-Book herunterladen", fr: "Télécharger l'ebook", it: "Scarica l'ebook" },
     "altch.sep":    { es: "o avísame por otra vía", en: "or notify me another way", de: "oder anders benachrichtigen", fr: "ou préviens-moi autrement", it: "o avvisami in altro modo" },
     "altch.notify": { es: "Avísame", en: "Notify me", de: "Benachrichtigen", fr: "Préviens-moi", it: "Avvisami" },
     "altch.hint": {
@@ -124,6 +125,13 @@
       de: `Schau in dein Postfach: dein <strong>Gratis-E-Book</strong> ist unterwegs. Und du bekommst <strong>Geschenke in der App</strong> zum Start`,
       fr: `Regarde ta boîte mail : ton <strong>ebook gratuit</strong> arrive. Et tu auras des <strong>cadeaux dans l'app</strong> le jour du lancement`,
       it: `Controlla la tua email: il tuo <strong>ebook gratis</strong> è in arrivo. E avrai <strong>regali nell'app</strong> il giorno del lancio`,
+    },
+    "success.textDl": {
+      es: `Tu <strong>ebook gratis</strong> se está descargando. Si no empieza, pulsa el botón. Te avisaremos del lanzamiento`,
+      en: `Your <strong>free ebook</strong> is downloading. If it doesn't start, tap the button. We'll notify you at launch`,
+      de: `Dein <strong>Gratis-E-Book</strong> wird heruntergeladen. Falls nicht, tippe auf den Button. Wir melden uns zum Start`,
+      fr: `Ton <strong>ebook gratuit</strong> se télécharge. Si ça ne démarre pas, appuie sur le bouton. On te préviendra au lancement`,
+      it: `Il tuo <strong>ebook gratis</strong> si sta scaricando. Se non parte, premi il pulsante. Ti avviseremo al lancio`,
     },
     "trust1": { es: "Ebook gratis al instante en tu correo", en: "Free ebook instantly in your inbox", de: "Gratis-E-Book sofort im Postfach", fr: "Ebook gratuit tout de suite dans ta boîte mail", it: "Ebook gratis subito nella tua email" },
     "trust2": { es: "Tu correo se guarda cifrado", en: "Your email is stored encrypted", de: "Deine E-Mail wird verschlüsselt gespeichert", fr: "Ton e-mail est stocké chiffré", it: "La tua email è salvata cifrata" },
