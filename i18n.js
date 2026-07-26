@@ -120,11 +120,11 @@
     },
     "success.title": { es: "¡Estás dentro!", en: "You're in!", de: "Du bist dabei!", fr: "Tu es inscrit !", it: "Ci sei!" },
     "success.text": {
-      es: `Revisa tu correo: tu <strong>ebook gratis</strong> va de camino. Y tendrás <strong>regalos en la app</strong> el día del lanzamiento`,
-      en: `Check your inbox: your <strong>free ebook</strong> is on its way. And you'll get <strong>in-app gifts</strong> on launch day`,
-      de: `Schau in dein Postfach: dein <strong>Gratis-E-Book</strong> ist unterwegs. Und du bekommst <strong>Geschenke in der App</strong> zum Start`,
-      fr: `Regarde ta boîte mail : ton <strong>ebook gratuit</strong> arrive. Et tu auras des <strong>cadeaux dans l'app</strong> le jour du lancement`,
-      it: `Controlla la tua email: il tuo <strong>ebook gratis</strong> è in arrivo. E avrai <strong>regali nell'app</strong> il giorno del lancio`,
+      es: `Te avisaremos por correo el día del lanzamiento y recibirás <strong>regalos en la app</strong>`,
+      en: `We'll notify you by email on launch day and you'll get <strong>in-app gifts</strong>`,
+      de: `Wir benachrichtigen dich per E-Mail zum Start und du bekommst <strong>Geschenke in der App</strong>`,
+      fr: `On te préviendra par e-mail le jour du lancement et tu auras des <strong>cadeaux dans l'app</strong>`,
+      it: `Ti avviseremo via email il giorno del lancio e riceverai <strong>regali nell'app</strong>`,
     },
     "success.textDl": {
       es: `Pulsa el botón para descargar tu <strong>ebook gratis</strong>. Te avisaremos del lanzamiento`,
