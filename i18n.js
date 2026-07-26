@@ -106,7 +106,7 @@
       fr: `Inscris-toi et reçois l'<span class="grad">ebook gratuit</span>`,
       it: `Iscriviti e ottieni l'<span class="grad">ebook gratis</span>`,
     },
-    "ebook.perk1": { es: "Ebook «Deja de empezar de nuevo» gratis", en: "Free ebook «Deja de empezar de nuevo»", de: "Gratis-E-Book «Deja de empezar de nuevo»", fr: "Ebook gratuit «Deja de empezar de nuevo»", it: "Ebook gratis «Deja de empezar de nuevo»" },
+    "ebook.perk1": { es: "Ebook «Deja de empezar de nuevo» gratis", en: "Free ebook «Stop Starting Over»", de: "Gratis-E-Book «Stop Starting Over»", fr: "Ebook gratuit «Stop Starting Over»", it: "Ebook gratis «Stop Starting Over»" },
     "ebook.perk2": { es: "Aviso del lanzamiento de la app", en: "App launch notification", de: "Benachrichtigung zum App-Start", fr: "Avis du lancement de l'app", it: "Avviso del lancio dell'app" },
     "ebook.download": { es: "Descargar el ebook", en: "Download the ebook", de: "E-Book herunterladen", fr: "Télécharger l'ebook", it: "Scarica l'ebook" },
     "altch.sep":    { es: "o avísame por otra vía", en: "or notify me another way", de: "oder anders benachrichtigen", fr: "ou préviens-moi autrement", it: "o avvisami in altro modo" },

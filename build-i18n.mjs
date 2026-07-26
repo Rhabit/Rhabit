@@ -89,6 +89,13 @@ function build(lang, m) {
   );
   h = h.replace(/"inLanguage": "es"/g, `"inLanguage": "${lang}"`);
 
+  // Ebook en versión inglesa para todos los idiomas no españoles:
+  // portada, PDF (nombre con hash) y nombre del archivo descargado.
+  h = h.replace('src="assets/ebook.png"', 'src="assets/Ebook-English.png"');
+  h = h.replace('/assets/ebook-660a9dc4c5b76b39.pdf', '/assets/ebook-en-42498f425d4c5946.pdf');
+  h = h.replace('download="Deja de empezar de nuevo.pdf"', 'download="Stop Starting Over.pdf"');
+  h = h.replace('Ebook «Deja de empezar de nuevo» — 100% descuento, gratis al registrarte', 'Ebook «Stop Starting Over» — 100% off, free when you sign up');
+
   // Rutas de recursos -> absolutas (el archivo vive en /<lang>/).
   h = h.replace(/(href|src|poster)="assets\//g, '$1="/assets/');
   h = h.replace('href="favicon.ico"', 'href="/favicon.ico"');
