@@ -70,7 +70,7 @@ function isValidEmail(v) {
 }
 
 const altch = document.getElementById("altch");
-const EBOOK_URL = "/assets/ebook.pdf";
+const EBOOK_URL = "/assets/ebook-660a9dc4c5b76b39.pdf";
 
 // Lanza la descarga del ebook (mismo origen) sin salir de la página.
 function downloadEbook() {
