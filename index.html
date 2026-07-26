@@ -352,6 +352,29 @@
           <strong>estudio</strong> y <strong>metas</strong>, y los convierte en una racha que no querrás romper.
         </p>
 
+        <!-- OFERTA EBOOK (estilo tienda) -->
+        <div class="ebook" id="ebook">
+          <div class="ebook__media">
+            <img src="assets/ebook.png" alt="Ebook «Deja de empezar de nuevo»" class="ebook__cover" width="240" height="312" decoding="async" />
+          </div>
+          <div class="ebook__info">
+            <span class="ebook__tag" data-i18n="ebook.tag">Gratis al registrarte</span>
+            <h2 class="ebook__title">Deja de empezar de nuevo</h2>
+            <p class="ebook__sub" data-i18n="ebook.sub">Cómo crear hábitos que realmente puedas mantener</p>
+            <div class="ebook__rating">
+              <span class="ebook__stars" aria-hidden="true">★★★★★</span>
+              <span class="ebook__meta" data-i18n="ebook.meta">4,9 · Guía en PDF · Descarga inmediata</span>
+            </div>
+            <div class="ebook__price">
+              <span class="ebook__off">-100%</span>
+              <span class="ebook__now" data-i18n="ebook.free">GRATIS</span>
+              <span class="ebook__was"><span data-i18n="ebook.listlabel">Precio de lista</span> <s>19,99&nbsp;€</s></span>
+            </div>
+            <p class="ebook__deal" data-i18n-html="ebook.deal">Deja tu correo y <strong>recibes el ebook gratis al instante</strong> + aviso y <strong>regalos en la app</strong> cuando lancemos.</p>
+            <a href="#email" class="ebook__cta" data-i18n="ebook.cta">Conseguirlo gratis</a>
+          </div>
+        </div>
+
         <!-- FORMULARIO DE CAPTACIÓN (lo más grande) -->
         <div class="waitlist" id="waitlist">
           <form id="waitlist-form" class="waitlist__form" novalidate>
@@ -369,16 +392,16 @@
                 data-i18n-aria="form.emailAria"
               />
               <button type="submit" class="waitlist__btn" data-i18n="form.notify">
-                Avísame al salir
+                Enviarme el ebook gratis
               </button>
             </div>
             <input type="text" id="hp-email" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
             <label class="waitlist__consent">
               <input type="checkbox" id="consent" required />
-              <span data-i18n-html="form.consent">Acepto la <a href="/privacidad.html">política de privacidad</a> y recibir el aviso de lanzamiento.</span>
+              <span data-i18n-html="form.consent">Acepto la <a href="/privacidad.html">política de privacidad</a> y recibir el ebook y el aviso de lanzamiento.</span>
             </label>
             <p class="waitlist__hint" id="form-hint">
-              <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-gift"/></svg> <span data-i18n-html="hero.hint">Los que se apunten ahora reciben <strong>regalos exclusivos</strong> el día del lanzamiento.</span>
+              <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-gift"/></svg> <span data-i18n-html="hero.hint">Pon tu correo y recibes el <strong>ebook gratis al instante</strong> + aviso y <strong>regalos en la app</strong> al lanzar.</span>
             </p>
           </form>
 
@@ -401,25 +424,25 @@
               <input type="text" id="hp-alt" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
               <label class="waitlist__consent">
                 <input type="checkbox" id="altch-consent" required />
-                <span data-i18n-html="form.consent">Acepto la <a href="/privacidad.html">política de privacidad</a> y recibir el aviso de lanzamiento.</span>
+                <span data-i18n-html="form.consent">Acepto la <a href="/privacidad.html">política de privacidad</a> y recibir el ebook y el aviso de lanzamiento.</span>
               </label>
               <p class="waitlist__hint">
-                <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> <span data-i18n-html="altch.hint">Te avisaremos por <strong id="altch-name">WhatsApp</strong> el día del lanzamiento.</span>
+                <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> <span data-i18n-html="altch.hint">Te enviamos el <strong>ebook gratis</strong> por <strong id="altch-name">WhatsApp</strong> y te avisamos, con regalos en la app, al lanzar.</span>
               </p>
             </form>
           </div>
 
           <div class="waitlist__success" id="waitlist-success" role="status" aria-live="polite" hidden>
             <div class="waitlist__check"><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg></div>
-            <h3>¡Estás dentro!</h3>
-            <p>Te avisaremos en cuanto Rhabit esté disponible. Prepárate para tus <strong>regalos de bienvenida</strong> <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-gift"/></svg></p>
+            <h3 data-i18n="success.title">¡Estás dentro!</h3>
+            <p><span data-i18n-html="success.text">Revisa tu correo: tu <strong>ebook gratis</strong> va de camino. Y tendrás <strong>regalos en la app</strong> el día del lanzamiento</span> <svg class="ico" aria-hidden="true" focusable="false"><use href="#i-gift"/></svg></p>
           </div>
         </div>
 
         <ul class="hero__trust">
-          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> <span data-i18n="trust1">Sin spam, solo el aviso de lanzamiento</span></li>
+          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> <span data-i18n="trust1">Ebook gratis al instante en tu correo</span></li>
           <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> <span data-i18n="trust2">Tu correo se guarda cifrado</span></li>
-          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> <span data-i18n="trust3">Regalos garantizados para los primeros</span></li>
+          <li><svg class="ico" aria-hidden="true" focusable="false"><use href="#i-check"/></svg> <span data-i18n="trust3">Regalos en la app para los primeros</span></li>
         </ul>
       </div>
     </section>
