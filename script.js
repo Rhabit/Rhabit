@@ -70,21 +70,9 @@ function isValidEmail(v) {
 }
 
 const altch = document.getElementById("altch");
-const EBOOK_URL = "/assets/ebook-660a9dc4c5b76b39.pdf";
 
-// Lanza la descarga del ebook (mismo origen) sin salir de la página.
-function downloadEbook() {
-  const a = document.createElement("a");
-  a.href = EBOOK_URL;
-  a.download = "Deja de empezar de nuevo.pdf";
-  a.rel = "noopener";
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-}
-
-// download=true (registro por redes): descarga el ebook al instante y muestra
-// el botón por si el navegador bloquea la descarga automática.
+// download=true (registro por redes): muestra el botón para descargar el ebook.
+// La descarga solo ocurre cuando el usuario pulsa el botón.
 function showSuccess(download) {
   wrapForm.hidden = true;
   if (altch) altch.hidden = true;
@@ -94,7 +82,6 @@ function showSuccess(download) {
   if (dl)  dl.hidden = !download;
   success.hidden  = false;
   success.scrollIntoView({ behavior: "smooth", block: "center" });
-  if (download) downloadEbook();
 }
 
 form.addEventListener("submit", async (e) => {
