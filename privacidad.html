@@ -3,73 +3,90 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests" />
   <title>Política de privacidad — Rhabit</title>
-  <meta name="description" content="Política de privacidad de Rhabit: qué datos recogemos en la lista de espera, para qué, cuánto tiempo y cómo ejercer tus derechos." />
-  <meta name="robots" content="noindex, follow" />
+  <meta name="description" content="Política de privacidad de la aplicación y el sitio web de Rhabit." />
+  <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://rhabit.app/privacidad.html" />
   <meta name="theme-color" content="#090906" />
   <meta name="color-scheme" content="dark" />
-
   <link rel="icon" href="favicon.ico" sizes="any" />
   <link rel="icon" href="assets/favicon-32.png" type="image/png" sizes="32x32" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" sizes="180x180" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-
   <style>
-    .legal{max-width:760px;margin:0 auto;padding:120px 22px 90px}
+    .legal{max-width:780px;margin:0 auto;padding:76px 22px 90px}
     .legal h1{font-size:clamp(28px,5vw,40px);font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
     .legal .updated{color:var(--dim);font-size:14px;margin-bottom:34px}
     .legal h2{font-size:19px;font-weight:700;margin:30px 0 10px;color:var(--accent)}
-    .legal p,.legal li{color:var(--dim);line-height:1.65;font-size:15.5px}
-    .legal ul{margin:8px 0 8px 20px}
-    .legal li{margin:5px 0}
-    .legal a{color:var(--accent);text-decoration:underline}
-    .legal strong{color:var(--fg,#f2ede6)}
-    .legal .back{display:inline-flex;align-items:center;gap:7px;margin-bottom:26px;color:var(--dim);text-decoration:none;font-weight:600}
-    .legal .back:hover{color:var(--accent)}
+    .legal p,.legal li{color:var(--dim);line-height:1.7;font-size:15.5px}
+    .legal ul{margin:8px 0 8px 20px}.legal li{margin:6px 0}
+    .legal a{color:var(--accent);text-decoration:underline}.legal strong{color:var(--text)}
+    .legal .back{display:inline-flex;margin-bottom:26px;color:var(--dim);text-decoration:none;font-weight:600}
+    .legal .links{display:flex;flex-wrap:wrap;gap:10px 18px;margin:34px 0 0;padding-top:20px;border-top:1px solid var(--border)}
   </style>
 </head>
 <body>
   <div class="bg-grid" aria-hidden="true"></div>
   <div class="bg-glow bg-glow--1" aria-hidden="true"></div>
   <div class="bg-glow bg-glow--2" aria-hidden="true"></div>
-
   <main class="legal">
     <a class="back" href="/">← Volver a Rhabit</a>
     <h1>Política de privacidad</h1>
-    <p class="updated">Última actualización: 6 de julio de 2026</p>
+    <p class="updated">Última actualización: 21 de octubre de 2026</p>
 
-    <p>Esta política explica cómo se tratan los datos que nos facilitas al apuntarte a la lista de espera de <strong>Rhabit</strong> (este sitio, <a href="https://rhabit.app">rhabit.app</a>). Solo recogemos lo imprescindible para avisarte del lanzamiento.</p>
+    <p>Esta política explica cómo se tratan los datos al utilizar la aplicación Rhabit, visitar <a href="https://rhabit.app">rhabit.app</a> o apuntarse a su lista de espera.</p>
 
-    <h2>Responsable</h2>
-    <p>El responsable del tratamiento es el equipo de Rhabit. Para cualquier cuestión sobre tus datos o esta política, escribe a <strong>Contact.rhabit@proton.me</strong>.</p>
+    <h2>Responsable y contacto</h2>
+    <p>Rhabit es un proyecto independiente gestionado desde España. Para cuestiones de privacidad, ejercicio de derechos o información sobre el responsable, escribe a <a href="mailto:soporte@senlabs.es">soporte@senlabs.es</a>.</p>
 
-    <h2>Qué datos recogemos</h2>
+    <h2>Datos guardados en el dispositivo</h2>
+    <p>Rhabit puede utilizarse sin cuenta. Los hábitos, registros, entrenamientos, eventos, metas, notas, medios y preferencias se guardan principalmente en el dispositivo. Puedes exportarlos o eliminarlos desde Ajustes. La desinstalación puede eliminar estos datos locales si no existe una copia exportada.</p>
+
+    <h2>Cuenta y datos del servicio</h2>
+    <p>Si creas una cuenta, tratamos el nombre de usuario, la credencial de acceso, el correo de recuperación cuando lo facilitas y la información necesaria para mantener la sesión. Los hábitos personalizados y el estado de determinadas funciones pueden almacenarse en Supabase para restaurarlos. Si eliges el acceso con Google, Google interviene en la autenticación y recibimos los datos mínimos necesarios para identificar la cuenta.</p>
+
+    <h2>Publicidad bonificada y consentimiento</h2>
+    <p>Rhabit ofrece anuncios bonificados opcionales mediante Google AdMob. Solo se solicitan cuando eliges ver un anuncio para obtener la recompensa indicada. Google puede tratar identificadores publicitarios, dirección IP, información del dispositivo, interacciones, señales antifraude y diagnósticos para servir, medir y proteger la publicidad.</p>
+    <p>Cuando corresponde, Rhabit utiliza la plataforma de consentimiento de Google para recoger o consultar tus preferencias antes de solicitar anuncios. Según tu elección y la disponibilidad regional, los anuncios pueden ser personalizados, no personalizados o limitados. Puedes cambiar o retirar tu consentimiento desde <strong>Ajustes → Datos y privacidad → Privacidad de anuncios</strong>. Más información en <a href="https://policies.google.com/technologies/partner-sites">Cómo utiliza Google los datos de sitios y aplicaciones asociados</a>.</p>
+
+    <h2>Diagnósticos y soporte</h2>
+    <p>Cuando Sentry está configurado, recibe informes de errores y datos técnicos como versión de la app, sistema operativo, modelo de dispositivo y traza del fallo. Rhabit desactiva por defecto el envío de datos personales, capturas y jerarquías de pantalla, aunque una traza técnica podría contener información incidental. Si utilizas «Reportar un problema», se envían el mensaje, el correo opcional y los datos técnicos que decidas incluir; no se adjuntan automáticamente tus hábitos ni notas.</p>
+
+    <h2>Permisos</h2>
+    <p>La aplicación puede solicitar acceso a notificaciones para recordatorios y a fotos o vídeos para elegir iconos, adjuntar contenido o guardar imágenes. Puedes retirar esos permisos desde los ajustes del dispositivo.</p>
+
+    <h2>Sitio web y lista de espera</h2>
+    <p>Si te apuntas a la lista de espera, tratamos el correo o el canal de contacto que facilites, la fecha y un identificador técnico para evitar duplicados. La finalidad es entregar el contenido solicitado y avisarte del lanzamiento conforme al consentimiento marcado en el formulario. El sitio se aloja en GitHub Pages y el envío del formulario utiliza servicios de Google.</p>
+
+    <h2>Finalidades y bases jurídicas</h2>
     <ul>
-      <li>Tu <strong>correo electrónico</strong>, si te apuntas por email; o</li>
-      <li>El <strong>canal y usuario/número</strong> que indiques (WhatsApp, Instagram, Telegram, etc.), si eliges avisarte por otra vía.</li>
-      <li>La <strong>fecha</strong> del envío y un identificador técnico (hash) para evitar duplicados.</li>
+      <li><strong>Prestación del servicio:</strong> crear la cuenta, autenticarte, guardar funciones solicitadas y atender borrados o soporte.</li>
+      <li><strong>Consentimiento:</strong> publicidad personalizada, acceso a información del dispositivo cuando sea exigible y comunicaciones de la lista de espera.</li>
+      <li><strong>Interés legítimo:</strong> seguridad, prevención de fraude, estabilidad y diagnóstico técnico, con las salvaguardas indicadas.</li>
+      <li><strong>Obligación legal:</strong> conservación o comunicación cuando una norma aplicable lo exija.</li>
     </ul>
-    <p>No recogemos datos de forma oculta, no usamos cookies de seguimiento ni de publicidad, y no elaboramos perfiles.</p>
 
-    <h2>Con qué finalidad</h2>
-    <p>Únicamente para <strong>avisarte una sola vez del lanzamiento</strong> de la app y, en su caso, de los regalos de bienvenida. No enviaremos publicidad de terceros.</p>
+    <h2>Proveedores y transferencias</h2>
+    <p>Pueden intervenir Supabase (cuenta y datos de servidor), Google (inicio de sesión, AdMob, consentimiento y formularios web), Sentry (diagnóstico) y GitHub Pages (alojamiento web). Algunos proveedores pueden tratar datos fuera del Espacio Económico Europeo mediante los mecanismos de transferencia y garantías que declaran en sus propias políticas.</p>
 
-    <h2>Base legal</h2>
-    <p>Tu <strong>consentimiento</strong> explícito, que otorgas al marcar la casilla del formulario. Puedes retirarlo en cualquier momento (ver «Tus derechos»).</p>
+    <h2>Conservación</h2>
+    <p>Los datos locales permanecen hasta que los borras o desinstalas la app. Los datos de cuenta se conservan mientras esté activa y se eliminan al completar la supresión, salvo obligaciones legales, prevención de fraude o copias temporales de seguridad. Los datos de la lista de espera se conservan hasta el aviso de lanzamiento, la retirada del consentimiento o su supresión. Cada proveedor aplica además sus plazos técnicos y legales.</p>
 
-    <h2>Dónde se guardan</h2>
-    <p>Los datos se almacenan de forma privada en <strong>Google (Hojas de cálculo / Apps Script)</strong>, que actúa como encargado del tratamiento. El sitio se aloja en GitHub Pages. No se ceden a terceros con fines comerciales.</p>
+    <h2>Tus derechos y eliminación</h2>
+    <p>Puedes solicitar acceso, rectificación, supresión, limitación, portabilidad u oposición, y retirar el consentimiento sin afectar al tratamiento anterior. Escribe a <a href="mailto:soporte@senlabs.es">soporte@senlabs.es</a>. También puedes eliminar la cuenta desde la aplicación o consultar el procedimiento en <a href="/eliminar-cuenta.html">Eliminar cuenta y datos</a>. Si consideras que tus derechos no han sido atendidos, puedes reclamar ante la <a href="https://www.aepd.es">Agencia Española de Protección de Datos</a>.</p>
 
-    <h2>Cuánto tiempo</h2>
-    <p>Conservamos tus datos hasta el lanzamiento y el envío del aviso, o hasta que solicites su supresión, lo que ocurra antes. Después se eliminan.</p>
+    <h2>Menores</h2>
+    <p>Rhabit no está dirigida a menores de 14 años y no recoge a sabiendas sus datos. Si detectamos una cuenta de una persona menor de esa edad, podremos eliminarla y solicitar la información necesaria para atender la incidencia.</p>
 
-    <h2>Tus derechos</h2>
-    <p>Puedes ejercer tus derechos de <strong>acceso, rectificación, supresión, oposición y portabilidad</strong>, así como retirar tu consentimiento, escribiendo a <strong>Contact.rhabit@proton.me</strong>. También puedes reclamar ante la autoridad de control (en España, la AEPD, <a href="https://www.aepd.es">aepd.es</a>).</p>
+    <h2>Cambios</h2>
+    <p>Actualizaremos la fecha de esta política cuando cambie. Si el cambio afecta de forma sustancial al tratamiento realizado por la aplicación, se comunicará mediante la app o por un medio adecuado.</p>
+
+    <nav class="links" aria-label="Información legal">
+      <a href="/terminos.html">Términos de uso</a>
+      <a href="/eliminar-cuenta.html">Eliminar cuenta y datos</a>
+      <a href="mailto:soporte@senlabs.es">Contacto</a>
+    </nav>
   </main>
 </body>
 </html>
